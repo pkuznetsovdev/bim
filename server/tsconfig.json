@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES6",            // Target ECMAScript 2015 (ES6) or later
+    "module": "CommonJS",       // Use CommonJS module system (Node.js)
+    "outDir": "./dist",         // Output directory for compiled files
+    "rootDir": ".",         // Source directory
+    "strict": true,             // Enable strict type checking
+    "esModuleInterop": true,    // Allows importing CommonJS modules as ES6 modules
+    "skipLibCheck": true,       // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Ensure consistent file name casing
+    "resolveJsonModule": true,  // Enable JSON imports
+    "lib": ["ESNext"],          // List of TypeScript library files to include
+
+    "declaration": true,        // Generate declaration files (for use with external packages)
+    "declarationMap": true,     // Generate source map files for declarations
+
+    "sourceMap": true,          // Generate source map files for debugging
+    "inlineSources": true,      // Include source code in source maps
+
+    "removeComments": false     // Keep comments in the output files for debugging
+  },
+  "include": ["./**/*.ts"],   // Include TypeScript source files
+  "exclude": ["node_modules"]   // Exclude the "node_modules" directory
+}

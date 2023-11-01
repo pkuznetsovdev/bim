@@ -1,2 +1,6 @@
 .DS_Store
 .idea
+
+# SERVER
+server/node_modules
+server/dist
