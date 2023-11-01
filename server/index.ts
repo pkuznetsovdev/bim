@@ -2,22 +2,16 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-
 const DEFAULT_SERVER_PORT = 5000;
-
-const app = express();
 const port = process.env.PORT || DEFAULT_SERVER_PORT;
 
-app.get('/', (req, res) => {
-    res.send('Home page 1');
-})
+const app = express();
 
-app.get('/users/:username/:id', (req, res) => {
-    res.send(`User ID: ${JSON.stringify(req.query)}`);
-})
+// middleware
+app.use(cors());
+app.use(express.json());
 
+// server
 app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
-
-import 'db';
+    console.log(`server has started on port ${port}`)
+})

@@ -20,5 +20,5 @@
     "removeComments": false     // Keep comments in the output files for debugging
   },
   "include": ["./**/*.ts"],   // Include TypeScript source files
-  "exclude": ["node_modules"]   // Exclude the "node_modules" directory
+  "exclude": ["node_modules", "dist/**/*"]   // Exclude the "node_modules" directory
 }
