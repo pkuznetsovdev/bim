@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+// module.exports = app; should be added in '../dist/index.js'
 import app from '../dist/index.js';
 import DBG from 'debug';
 const debug = DBG('notes:server-debug');

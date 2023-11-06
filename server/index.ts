@@ -12,7 +12,7 @@ const port = normalizePort(process.env.PORT || DEFAULT_SERVER_PORT);
 
 const app = express();
 
-// middleware
+// middleware secure
 app.use(helmet({
     contentSecurityPolicy: false,
 }));
@@ -22,16 +22,17 @@ app.use(cors(
         credentials: true,
     }
 ));
-
+// middleware
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
 // server
-app.listen(port, () => {
-    console.log(`server has started on port ${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`server has started on port ${port}`)
+// })
 
 app.get('/', (req, res) => {
     console.log('Home page');
@@ -56,3 +57,5 @@ app.get('/user', (req, res) => {
     console.log('username: ', username);
     res.json({username});
 });
+
+export default app;
