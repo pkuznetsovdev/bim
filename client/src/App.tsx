@@ -1,9 +1,10 @@
-import React, {ChangeEventHandler, FormEventHandler} from 'react';
+import React, {ChangeEventHandler, FormEventHandler, MouseEventHandler} from 'react';
 import './App.css';
 import axios from 'axios';
 
 
 const BASE_API_URL = 'http://localhost:5000';
+
 function App() {
 
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -15,7 +16,7 @@ function App() {
     });
 
     const onChangeValue = React.useCallback<ChangeEventHandler<HTMLInputElement>>((event) => {
-        setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value}));
+        setFormData((prev) => ({...prev, [event.target.name]: event.target.value}));
     }, []);
 
     const onSubmit = React.useCallback<FormEventHandler>((event) => {
@@ -29,6 +30,19 @@ function App() {
                 setIsLoggedIn(response.status === 201);
             })
             .catch(error => {
+                console.log('Error:', error.response.data);
+            });
+    }, [formData]);
+
+    const onLogout = React.useCallback<MouseEventHandler>((event) => {
+        event.preventDefault();
+        axios.post(`${BASE_API_URL}/logout`, {
+            withCredentials: true,
+        })
+            .then(response => {
+                setIsLoggedIn(!Boolean(response.status === 200));
+            })
+            .catch(error => {
                 console.log('Error:', error);
             });
     }, [formData]);
@@ -39,7 +53,7 @@ function App() {
                 withCredentials: true,
             })
                 .then(response => {
-                    console.log(response)
+                    setUsername(response.data.username);
                 })
                 .catch(error => {
                     console.log('Error:', error);
@@ -47,9 +61,13 @@ function App() {
         }
     }, [isLoggedIn])
 
-
-    if (isLoggedIn) {
-        console.log('isLoggedIn: ', isLoggedIn)
+    if (isLoggedIn && userName) {
+        return (
+            <div className="login-page">
+                <h1>Hello {userName}</h1>
+                <button onClick={onLogout}>logout</button>
+            </div>
+        )
     }
 
     return (
@@ -57,8 +75,10 @@ function App() {
             <div className="form">
                 <h2>Login form</h2>
                 <form onSubmit={onSubmit} className="login-form">
-                    <input type="text" placeholder="username" name="username" value={formData.username} onChange={onChangeValue} />
-                    <input type="password" placeholder="password" name="password" value={formData.password} onChange={onChangeValue} />
+                    <input type="text" placeholder="username" name="username" value={formData.username}
+                           onChange={onChangeValue}/>
+                    <input type="password" placeholder="password" name="password" value={formData.password}
+                           onChange={onChangeValue}/>
                     <button type="submit">login</button>
                     <p className="message">Not registered? <a href="#">Create an account</a></p>
                 </form>
