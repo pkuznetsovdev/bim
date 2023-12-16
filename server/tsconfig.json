@@ -17,8 +17,16 @@
     "sourceMap": true,          // Generate source map files for debugging
     "inlineSources": true,      // Include source code in source maps
 
-    "removeComments": false     // Keep comments in the output files for debugging
+    "removeComments": false,     // Keep comments in the output files for debugging
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["./app/*"],
+    }
   },
   "include": ["./**/*.ts"],   // Include TypeScript source files
-  "exclude": ["node_modules", "dist/**/*"]   // Exclude the "node_modules" directory
+  "exclude": ["node_modules", "dist/**/*"],   // Exclude the "node_modules" directory
+  "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": ["tsconfig-paths/register"]
+  }
 }
