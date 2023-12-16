@@ -6,3 +6,13 @@ https://www.youtube.com/watch?v=b8ZUb_Okxro
 
 pern stack restaurant finder
 https://www.youtube.com/watch?v=J01rYl9T3BU
+
+
+
+////
+How I Setup My Server
+https://www.youtube.com/watch?v=lE9yqgk5ZmU
+
+////
+Postgres & Sequelize
+https://www.youtube.com/watch?v=NNM1IemQ5io&list=PLrwNNiB6YOA04IdB4Oo4faikZ8xzOHj7q&index=2
