@@ -1,4 +1,4 @@
 export enum APP_PATHS {
-    home = '/',
+    root = '/',
     users = '/users',
 }
