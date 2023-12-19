@@ -1,11 +1,36 @@
 import * as http from 'node:http';
-import config from '../config';
-import { getApp } from '../app';
+import {Sequelize} from 'sequelize'
+
+import config from 'config';
+import {getApp} from 'app';
 import * as process from "process";
+import {NODE_ENV_KEYS} from "@app/constants";
+import {initDevHelpers} from "@dev";
 
 const log = config.log;
 
-const app =  getApp(config);
+const sequelize = new Sequelize(config.postgres.options);
+
+function connectToPostgres() {
+    sequelize.authenticate()
+        .then(() => {
+            log.info('Authenticated to DB');
+
+            if (!process.env.NODE_ENV || process.env.NODE_ENV === NODE_ENV_KEYS.development) {
+                initDevHelpers(config);
+            }
+        })
+        .catch((e) => {
+            log.error('Unable to connect to DB', e);
+            process.exit(1);
+        });
+
+    return sequelize;
+}
+
+config.postgres.client = connectToPostgres();
+
+const app = getApp(config);
 
 const server = http.createServer(app);
 

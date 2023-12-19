@@ -20,8 +20,15 @@
     "removeComments": false,     // Keep comments in the output files for debugging
     "baseUrl": "./",
     "paths": {
+      "@app": ["./app"],
       "@app/*": ["./app/*"],
-    }
+      "@dev": ["./_dev"],
+      "@dev/*": ["./_dev/*"],
+    },
+
+    /* sequelize */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["./**/*.ts"],   // Include TypeScript source files
   "exclude": ["node_modules", "dist/**/*"],   // Exclude the "node_modules" directory
