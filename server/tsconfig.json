@@ -20,10 +20,9 @@
     "removeComments": false,     // Keep comments in the output files for debugging
     "baseUrl": "./",
     "paths": {
+      "@config": ["./config"],
       "@app": ["./app"],
       "@app/*": ["./app/*"],
-      "@dev": ["./_dev"],
-      "@dev/*": ["./_dev/*"],
     },
 
     /* sequelize */
@@ -35,5 +34,5 @@
   "ts-node": {
     // Do not forget to `npm i -D tsconfig-paths`
     "require": ["tsconfig-paths/register"]
-  }
+  },
 }

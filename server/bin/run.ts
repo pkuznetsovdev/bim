@@ -4,21 +4,14 @@ import {Sequelize} from 'sequelize'
 import config from 'config';
 import {getApp} from 'app';
 import * as process from "process";
-import {NODE_ENV_KEYS} from "@app/constants";
-import {initDevHelpers} from "@dev";
 
 const log = config.log;
-
 const sequelize = new Sequelize(config.postgres.options);
 
 function connectToPostgres() {
     sequelize.authenticate()
         .then(() => {
             log.info('Authenticated to DB');
-
-            if (!process.env.NODE_ENV || process.env.NODE_ENV === NODE_ENV_KEYS.development) {
-                initDevHelpers(config);
-            }
         })
         .catch((e) => {
             log.error('Unable to connect to DB', e);
@@ -34,7 +27,7 @@ const app = getApp(config);
 
 const server = http.createServer(app);
 
-server.listen(process.env.PORT || 3000)
+server.listen(config.serverPort)
 
 server.on('listening', () => {
     const serverAddress = server.address();
