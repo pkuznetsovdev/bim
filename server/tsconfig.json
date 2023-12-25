@@ -29,7 +29,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./**/*.ts"],   // Include TypeScript source files
+  "include": ["./**/*.ts", "./.eslintrc.js"],   // Include TypeScript source files
   "exclude": ["node_modules", "dist/**/*"],   // Exclude the "node_modules" directory
   "ts-node": {
     // Do not forget to `npm i -D tsconfig-paths`

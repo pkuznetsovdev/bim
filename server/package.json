@@ -9,7 +9,7 @@
     "start-old": "node ./bin/www.mjs",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:fix": "eslint . --fix",
     "start": "nodemon --files bin/run | bunyan -o short"
   },
   "keywords": [],
