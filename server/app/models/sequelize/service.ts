@@ -26,7 +26,7 @@ export abstract class DBService<Model extends Record<string, unknown>>
 
   abstract get(id: Model["id"]): Promise<Partial<Model>> | unknown;
 
-  abstract getMany(
+  abstract search(
     params: Partial<Model>,
   ): Promise<Array<Partial<Model>>> | unknown;
 

@@ -2,6 +2,7 @@ import express from "express";
 import { AppConfig } from "@config";
 import { AppPaths } from "@app/constants";
 import { DBService } from "@app/models/sequelize";
+import { createError, removeEmptyKeys } from "@app/utils";
 import { getCurrentUserId } from "./utils";
 import { User } from "./types";
 
@@ -26,12 +27,19 @@ export const getUserRouter = (
       const currentUserId = getCurrentUserId({ req });
       const newUserParams = req.body;
 
-      await userService.update(currentUserId, newUserParams);
-      res.end();
+      const filteredNewParams = removeEmptyKeys(newUserParams);
+
+      if (Object.keys(filteredNewParams).length) {
+        await userService.update(currentUserId, newUserParams);
+        res.end();
+      } else {
+        createError("No params to use for update");
+      }
     } catch (e) {
       return next(e);
     }
   });
+
   router.get(AppPaths.all, async (_req, res, next) => {
     try {
       const users = await userService.getAll();
