@@ -1,6 +1,6 @@
-export enum APP_PATHS {
-    root = '/',
-    user = '/user',
-    all = '/all',
-    search = '/search',
+export enum AppPaths {
+  root = "/",
+  user = "/user",
+  all = "/all",
+  search = "/search",
 }
