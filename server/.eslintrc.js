@@ -28,7 +28,8 @@ module.exports = {
     "@typescript-eslint/no-shadow": "warn",
     "import/prefer-default-export": "off",
     radix: "off",
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "consistent-return": "off",
+    "no-console": ["error", { allow: ["error"] }],
   },
 };

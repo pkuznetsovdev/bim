@@ -4,10 +4,12 @@ export enum UserRoles {
 }
 
 export type User = {
-  id: string;
-  email: string;
-  password: string;
-  role: UserRoles;
+  id: number;
+  googleId?: string;
+  password?: string;
+  email?: string;
+  username?: string;
   firstName?: string;
   lastName?: string;
+  role?: UserRoles;
 };

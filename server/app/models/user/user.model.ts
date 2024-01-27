@@ -11,6 +11,9 @@ export const getUserModel = (sequelize: Sequelize) =>
       primaryKey: true,
       unique: true,
     },
+    googleId: {
+      type: DataTypes.STRING,
+    },
     role: {
       type: DataTypes.ENUM,
       values: Object.values(UserRoles),
@@ -19,7 +22,6 @@ export const getUserModel = (sequelize: Sequelize) =>
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -30,6 +32,9 @@ export const getUserModel = (sequelize: Sequelize) =>
       type: DataTypes.STRING,
     },
     lastName: {
+      type: DataTypes.STRING,
+    },
+    username: {
       type: DataTypes.STRING,
     },
   });

@@ -1,5 +1,7 @@
 import { User } from "@app/models";
 
+type CustomUser = User;
+
 declare global {
   declare type NodeEnvKeys = "production" | "development" | "test";
   //
@@ -33,7 +35,7 @@ declare global {
 
   namespace Express {
     export interface Request {
-      user?: User;
+      user?: CustomUser;
     }
   }
 }

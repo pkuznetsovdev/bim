@@ -40,5 +40,7 @@ server.on("listening", () => {
     port = `${serverAddress.port}`;
   }
 
+  log.info("serverAddress: ", serverAddress);
+
   log.info(`Server is listening on port: ${port} in ${app.get("env")} mode`);
 });

@@ -52,6 +52,20 @@ export class UserService extends DBService<User> {
     }
   }
 
+  async searchOne(params: Partial<User>) {
+    try {
+      const filteredParams = removeEmptyKeys(params);
+      if (filteredParams && Object.keys(filteredParams).length !== 0) {
+        return await this.models.User.findOne({
+          where: filteredParams,
+        });
+      }
+      return undefined;
+    } catch (e) {
+      return e;
+    }
+  }
+
   async getAll() {
     try {
       return await this.models.User.findAll();

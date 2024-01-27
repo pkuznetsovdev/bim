@@ -1,8 +1,15 @@
 import * as process from "process";
 import Logger, { LogLevel } from "bunyan";
 import { Sequelize, Options } from "sequelize";
+import dotenv from "dotenv";
+import fs from "fs";
 import pjs from "../package.json";
-import "dotenv/config";
+
+if (fs.existsSync(".env")) {
+  dotenv.config({ path: ".env" });
+} else {
+  console.error(".env file not found.");
+}
 
 const { name, version } = pjs;
 
@@ -28,6 +35,10 @@ const SHARED_CONFIG = {
   serviceTimeout: 30,
   log: getLogger("debug"),
   serverPort: process.env.LOCAL_SERVER_API_PORT,
+  allowedDomains: [
+    `${process.env.LOCAL_CLIENT_APP}:${process.env.LOCAL_CLIENT_PORT}`,
+    `${process.env.LOCAL_SERVER_API}:${process.env.LOCAL_SERVER_API_PORT}`,
+  ],
   postgres: {
     options: POSTGRES_OPTIONS(getLogger("debug")),
     client: null as unknown as Sequelize,
