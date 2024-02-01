@@ -1,16 +1,17 @@
 import {Injectable} from "@angular/core";
 import {ApiService, ApiResourceSerializer} from "@app/core/api";
-import {User} from "@server/models";
+import {User} from "@app/models";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
 })
+
 export class UserService extends ApiService<User> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
-      null,
+      undefined,
       'pizzas',
       new UserSerializer());
   }

@@ -3,7 +3,6 @@ import { AppConfig } from "@config";
 import express, { Express } from "express";
 import { AppPaths, NODE_ENV_KEYS, SECRETS } from "@app/constants";
 import { requestErrorHandler } from "@app/utils";
-// import cookieSession from "cookie-session";
 import expressSession from "express-session";
 import passport from "passport";
 import routes from "./router";
@@ -12,7 +11,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(cookieParser());
+
 app.use(
   expressSession({
     secret: SECRETS.SESSION_COOKIE_KEY,

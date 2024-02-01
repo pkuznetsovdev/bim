@@ -25,7 +25,7 @@
     ],
     "paths": {
       "@app/*": ["./src/app/*"],
-      "@server/models": ["../server/app/models"]
+      "@env": ["./src/environments/environment"],
     }
   },
   "angularCompilerOptions": {

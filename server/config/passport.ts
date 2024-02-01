@@ -1,11 +1,9 @@
 import passport from "passport";
 import passportGoogle from "passport-google-oauth20";
+import passportLocal from "passport-local";
 import { AppPaths, SECRETS } from "@app/constants";
 import { User, UserService } from "@app/models";
 import config from "config";
-
-const GoogleStrategy = passportGoogle.Strategy;
-const callbackURL = `http://localhost:5000${AppPaths.api}${AppPaths.auth}${AppPaths.google}${AppPaths.redirect}`;
 
 passport.serializeUser((user, done) => {
   done(null, (user as User).id);
@@ -14,11 +12,28 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   const userService = new UserService(config.postgres.client);
 
-  userService.get(id as string).then((user) => {
+  userService.get(parseInt(id as string)).then((user) => {
     done(null, user as User);
   });
 });
 
+const LocalStrategy = passportLocal.Strategy;
+passport.use(
+  "password",
+  new LocalStrategy(
+    { passReqToCallback: true, usernameField: "email" },
+    (req, email, password, done) => {
+      // eslint-disable-next-line
+      config.log.info(
+        `! - Local strategy with password: "${password}" and email: "${email}"`,
+      );
+      return done(null, { id: "test" });
+    },
+  ),
+);
+
+const GoogleStrategy = passportGoogle.Strategy;
+const callbackURL = `http://localhost:5000${AppPaths.api}${AppPaths.auth}${AppPaths.google}${AppPaths.redirect}`;
 passport.use(
   new GoogleStrategy(
     {

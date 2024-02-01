@@ -1,4 +1,13 @@
-import { User } from '@server/models'
+export type User = {
+  id: number;
+  googleId?: string;
+  password?: string;
+  email?: string;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+  // role?: UserRoles;
+};
 
 export class UserModel {
   id: User['id'];

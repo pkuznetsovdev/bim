@@ -1,9 +1,10 @@
 import express from "express";
 import { AppConfig } from "@config";
 import { AppPaths } from "@app/constants";
-import passport from "passport";
 import "@config/passport";
+import passport from "passport";
 import { ClientPaths } from "@app/constants/client-paths";
+import { User } from "@app/models";
 
 const router = express.Router();
 
@@ -26,15 +27,17 @@ export const getAuthRouter = (config: AppConfig) => {
     },
   );
 
-  router.get(
-    AppPaths.login,
-    passport.authenticate("local", {
-      failureRedirect: ClientPaths.root,
-      successRedirect: ClientPaths.root,
-    }),
-  );
+  router.post(AppPaths.login, (req, res, next) => {
+    config.log.info(`Login handler ${JSON.stringify(req.body)}`);
 
-  router.get(AppPaths.logout, (req, res) => {
+    passport.authenticate("password", (err: Error, user: User) => {
+      config.log.info(
+        `passport authenticate cb with user: ${JSON.stringify(user)}`,
+      );
+    })(req, res, next);
+  });
+
+  router.post(AppPaths.logout, (req, res) => {
     req.logout(() => ({}));
     res.redirect(AppPaths.root);
   });

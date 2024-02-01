@@ -3,7 +3,7 @@ import { removeEmptyKeys } from "@app/utils";
 import { User } from "./types";
 
 export class UserService extends DBService<User> {
-  async create(newUser: Exclude<User, "id">) {
+  async create(newUser: Omit<User, "id">) {
     try {
       return await this.models.User.create(newUser);
     } catch (e) {

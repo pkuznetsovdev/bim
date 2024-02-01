@@ -1,5 +1,6 @@
 export * from './api'
 export * from './serializer'
-export * from './error-interceptor'
+export * from './error.interceptor'
+export * from './logger.interceptor'
 export * from './resource'
 export * as CONSTANTS from './constants'

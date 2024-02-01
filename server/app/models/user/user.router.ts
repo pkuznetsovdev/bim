@@ -30,7 +30,7 @@ export const getUserRouter = (
       const filteredNewParams = removeEmptyKeys(newUserParams);
 
       if (Object.keys(filteredNewParams).length) {
-        await userService.update(currentUserId, newUserParams);
+        await userService.update(parseInt(`${currentUserId}`), newUserParams);
         res.end();
       } else {
         createError("No params to use for update");
