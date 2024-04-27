@@ -16,3 +16,7 @@ https://www.youtube.com/watch?v=lE9yqgk5ZmU
 ////
 Postgres & Sequelize
 https://www.youtube.com/watch?v=NNM1IemQ5io&list=PLrwNNiB6YOA04IdB4Oo4faikZ8xzOHj7q&index=2
+
+///
+22 - Node.js + Passport
+https://www.youtube.com/watch?v=xb2ieI0VN3E&list=PLUUOvUPrFYcjel-IKiAQY4coJJ9EUjfcP&index=22

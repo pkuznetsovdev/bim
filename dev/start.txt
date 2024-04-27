@@ -1,5 +1,9 @@
-RUN DOCKER CONTAINER (--rm to remove when stopped):
-docker run --name bim -e POSTGRES_PASSWORD=admin -p 5432:5432 -d --rm postgres
+1. Run docker
+2. RUN DOCKER CONTAINER (--rm to remove when stopped):
+docker run --name bim-dev -e POSTGRES_PASSWORD=admin -p 5432:5432 -d --rm postgres
+3. PGadmin for DB UI
+Create db 'bim-dev'
+
 
 
 CREATE DATABASE:
