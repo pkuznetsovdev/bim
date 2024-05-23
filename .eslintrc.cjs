@@ -33,7 +33,8 @@ module.exports = {
             "ObjectPattern": { "multiline": true },
             "ImportDeclaration": "never",
             "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-        }]
+        }],
+        "react/jsx-one-expression-per-line": [2,  { "allow": "non-jsx" }]
     },
     parserOptions: {
         project: ['./tsconfig.json', './tsconfig.node.json'],
