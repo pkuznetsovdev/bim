@@ -22,9 +22,13 @@
 
     /* Imports*/
     "baseUrl": ".",
-//    "paths": {
-//      "@/*": ["src/*"],
-//    }
+    "paths": {
+      "@elements": ["src/components/elements"],
+      "@components": ["src/components"],
+      "@constants": ["src/constants"],
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"],
+    }
   },
   "include": ["src", ".eslintrc.cjs"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,10 +1,13 @@
 import './App.scss';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'src/router';
+import { AuthProvider } from 'src/providers';
 
 const App = () => {
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 };
 

@@ -8,7 +8,21 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: 'src', replacement: path.resolve(__dirname, 'src') },
+      {
+        find: 'src', replacement: path.resolve(__dirname, 'src'),
+      },
+      {
+        find: '@elements', replacement: path.resolve(__dirname, 'src/components/elements'),
+      },
+      {
+        find: '@components', replacement: path.resolve(__dirname, 'src/components'),
+      },
+      {
+        find: '@constants', replacement: path.resolve(__dirname, 'src/constants'),
+      },
+      {
+        find: '@hooks', replacement: path.resolve(__dirname, 'src/hooks'),
+      },
     ],
   },
   css: {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 
-export const PagePostDetails = () => {
+export const PostDetails = () => {
   const { postId } = useParams();
 
   return (

@@ -16,25 +16,27 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {
-        'react-refresh/only-export-components': [
-            'warn',
-            {allowConstantExport: true},
-        ],
         'react/react-in-jsx-scope': 0,
-        'react/jsx-no-target-blank': 1,
         'import/no-absolute-path': 0,
+        'import/prefer-default-export': 0,
+        "arrow-body-style": 0,
+        "react/jsx-props-no-spreading": 0,
+        'react/jsx-no-target-blank': 1,
         '@typescript-eslint/no-shadow': 1,
         'import/no-extraneous-dependencies': 1,
-        'import/prefer-default-export': 0,
+        'react-refresh/only-export-components': [
+            1,
+            {allowConstantExport: true},
+        ],
+        "arrow-parens": [2, "as-needed"],
         "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
-        "arrow-body-style": 0,
-        "object-curly-newline": ["error", {
+        "object-curly-newline": [2, {
             "ObjectExpression": "always",
             "ObjectPattern": { "multiline": true },
             "ImportDeclaration": "never",
             "ExportDeclaration": { "multiline": true, "minProperties": 3 }
         }],
-        "react/jsx-one-expression-per-line": [2,  { "allow": "non-jsx" }]
+        "react/jsx-one-expression-per-line": [2,  { "allow": "non-jsx" }],
     },
     parserOptions: {
         project: ['./tsconfig.json', './tsconfig.node.json'],
