@@ -5,7 +5,9 @@ export const NewPost = () => {
   return (
     <>
       <h1>New Post Page</h1>
-      <button onClick={logout}>Logout</button>
+      <button type="button" onClick={logout}>
+        Logout
+      </button>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
-import { Navbar } from '@components';
+import { AppModals, Navbar } from '@components';
+import { Link } from '@elements';
 
 export const LayoutMain = () => {
   return (
@@ -10,6 +11,10 @@ export const LayoutMain = () => {
       <main>
         <Outlet />
       </main>
+      <Link to="?sign-in=modal">To sign in</Link>
+      <br />
+      <Link to="?sign-up=modal">To sign up</Link>
+      <AppModals />
       <footer>Footer</footer>
     </div>
   );
