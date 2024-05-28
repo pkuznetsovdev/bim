@@ -16,8 +16,8 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    //    "noUnusedLocals": true,
+    //    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
     /* Imports*/
@@ -26,8 +26,9 @@
       "@elements": ["src/components/elements"],
       "@components": ["src/components"],
       "@constants": ["src/constants"],
+      "@types": ["src/types"],
       "@hooks": ["src/hooks"],
-      "@hooks/*": ["src/hooks/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["src", ".eslintrc.cjs"],

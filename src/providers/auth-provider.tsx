@@ -1,5 +1,5 @@
-import { createContext, PropsWithChildren } from 'react';
-import { useLocalStorage } from '@hooks/useLocalStorage';
+import { createContext, PropsWithChildren, useMemo } from 'react';
+import { useLocalStorage } from '@hooks/use-local-storage.tsx';
 
 type User = {
   id: string;
@@ -11,25 +11,22 @@ type AuthContextType = {
   logout: () => void;
 };
 
-export const AuthContext = createContext<AuthContextType | Record<string, never>>({
-});
+export const AuthContext = createContext<
+  AuthContextType | Record<string, never>
+>({});
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useLocalStorage<User>('user');
 
-  const login = async (data: User) => {
-    setUser(data);
-  };
-
-  const logout = () => {
-    setUser(null);
-  };
-
-  const value = {
-    user,
-    login,
-    logout,
-  } as const;
+  const value = useMemo(
+    () =>
+      ({
+        user,
+        login: async (data: User) => setUser(data),
+        logout: () => setUser(null),
+      }) as const,
+    [user, setUser]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -1,8 +1,11 @@
 import { useState } from 'react';
 
 export const useLocalStorage = <
-  T extends Record<string, any> | null = null,
->(keyName: string, defaultValue?: T) => {
+  T extends Record<string, unknown> | null = null,
+>(
+  keyName: string,
+  defaultValue?: T
+) => {
   const [storedValue, setStoredValue] = useState<T | null>(() => {
     try {
       const value = window.localStorage.getItem(keyName);

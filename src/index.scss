@@ -15,7 +15,9 @@ body {
   margin: 0;
   min-width: 100%;
   min-height: 100dvh;
-  transition: height .2s;
+  transition: height 0.2s;
 }
 
-p { color: green }
+p {
+  color: green;
+}

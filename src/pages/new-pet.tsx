@@ -1,5 +1,3 @@
 export const NewPet = () => {
-  return (
-    <h1>New Pet Page</h1>
-  );
+  return <h1>New Pet Page</h1>;
 };
