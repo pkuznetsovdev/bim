@@ -2,12 +2,16 @@ import './App.scss';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'src/router';
 import { AuthProvider } from 'src/providers';
+import { Provider } from 'react-redux';
+import { store } from 'src/store';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Provider>
   );
 };
 
