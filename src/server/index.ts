@@ -1,15 +1,30 @@
 import { createServer } from 'miragejs';
+import { BASE_API_PATH, API_PATHS } from '@api';
+import { db } from './db';
+
+const TIMEOUT = 1000;
 
 createServer({
   routes() {
-    this.namespace = 'api';
-    this.urlPrefix = 'http://localhost:3000';
+    this.urlPrefix = BASE_API_PATH;
 
-    this.post('/user/create', (schema, request) => {
-      console.log('schema: ', schema);
-      console.log('request: ', request);
+    /** Auth  */
+    this.post(
+      API_PATHS.authLocal,
+      (schema, request) => {
+        const data = JSON.parse(request.requestBody);
+        console.log(data);
+        return {};
+      },
+      { timing: TIMEOUT }
+    );
 
-      return 'response';
+    /** Posts  */
+    this.get(API_PATHS.posts, (schema, request) => schema.db.posts, {
+      timing: TIMEOUT,
     });
+  },
+  seeds(server) {
+    server.db.loadData(db);
   },
 });

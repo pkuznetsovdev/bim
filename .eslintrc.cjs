@@ -29,8 +29,9 @@ module.exports = {
     '@typescript-eslint/no-shadow': 1,
     'import/no-extraneous-dependencies': 1,
     'no-unused-vars': 1,
+    '@typescript-eslint/no-unused-vars': 1,
     'react-refresh/only-export-components': [1, { allowConstantExport: true }],
-    'arrow-parens': [2, 'as-needed'],
+    'object-property-newline': [2, { allowAllPropertiesOnSameLine: false }],
     'react/function-component-definition': [
       2,
       { namedComponents: 'arrow-function' },
@@ -38,8 +39,12 @@ module.exports = {
     'object-curly-newline': [
       2,
       {
-        ObjectExpression: { multiline: true, minProperties: 3, consistent: true  },
-        ObjectPattern: { multiline: true, minProperties: 3, consistent: true  },
+        ObjectExpression: {
+          multiline: true,
+          // minProperties: 3,
+          consistent: true,
+        },
+        ObjectPattern: { multiline: true, consistent: true },
         ImportDeclaration: 'never',
         ExportDeclaration: { multiline: true, minProperties: 3 },
       },

@@ -36,6 +36,14 @@ export default defineConfig({
         find: '@api',
         replacement: path.resolve(__dirname, 'src/api'),
       },
+      {
+        find: '@store',
+        replacement: path.resolve(__dirname, 'src/store'),
+      },
+      {
+        find: '@utils',
+        replacement: path.resolve(__dirname, 'src/utils'),
+      },
     ],
   },
   css: {

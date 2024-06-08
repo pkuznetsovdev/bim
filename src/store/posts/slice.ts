@@ -1,13 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { SLICE_STATUS } from "@constants";
-import { PostsState } from "./types";
-import { getPosts, createPost } from "./controllers";
+import { createSlice } from '@reduxjs/toolkit';
+import { SLICE_STATUS } from '@constants';
+import { isCancelledRequestError } from '@utils';
+import { PostsState } from './types';
+import { PostsController } from './controllers';
 
 const initialState: PostsState = {
   data: [],
   status: SLICE_STATUS.success,
   error: null,
-}
+};
 
 const posts = createSlice({
   name: 'posts',
@@ -15,26 +16,28 @@ const posts = createSlice({
   reducers: {},
   extraReducers: builder => {
     /** getPosts  */
-    builder.addCase(getPosts.fulfilled, (state, action) => {
-      state.data = action.payload;
-      state.status = SLICE_STATUS.success;
+    builder.addCase(PostsController.getPosts.fulfilled, (state, action) => {
+      if (!isCancelledRequestError(action?.payload?.error?.status)) {
+        state.data = action.payload;
+        state.status = SLICE_STATUS.success;
+      }
     });
-    builder.addCase(getPosts.pending, state => {
+    builder.addCase(PostsController.getPosts.pending, state => {
       state.status = SLICE_STATUS.loading;
     });
-    builder.addCase(getPosts.rejected, (state, action) => {
+    builder.addCase(PostsController.getPosts.rejected, state => {
       state.status = SLICE_STATUS.error;
     });
 
     /** createPost  */
-    builder.addCase(createPost.fulfilled, (state, action) => {
+    builder.addCase(PostsController.createPost.fulfilled, (state, action) => {
       state.data = action.payload;
       state.status = SLICE_STATUS.success;
     });
-    builder.addCase(createPost.pending, state => {
+    builder.addCase(PostsController.createPost.pending, state => {
       state.status = SLICE_STATUS.loading;
     });
-    builder.addCase(createPost.rejected, (state, action) => {
+    builder.addCase(PostsController.createPost.rejected, state => {
       state.status = SLICE_STATUS.error;
     });
   },

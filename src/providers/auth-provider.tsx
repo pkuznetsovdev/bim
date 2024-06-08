@@ -1,9 +1,7 @@
-import { createContext, PropsWithChildren, useMemo } from 'react';
+import { createContext, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useLocalStorage } from '@hooks/use-local-storage.tsx';
-
-type User = {
-  id: string;
-};
+import type { User } from '@types';
+import { useStoreDispatch, UserApi } from '@store';
 
 type AuthContextType = {
   user: User | null;
@@ -18,14 +16,23 @@ export const AuthContext = createContext<
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useLocalStorage<User>('user');
 
+  const dispatch = useStoreDispatch();
+
+  const handleLogin = useCallback(
+    authData => {
+      dispatch(UserApi.authLocal(authData));
+    },
+    [dispatch]
+  );
+
   const value = useMemo(
     () =>
       ({
         user,
-        login: async (data: User) => setUser(data),
+        login: handleLogin,
         logout: () => setUser(null),
       }) as const,
-    [user, setUser]
+    [user, setUser, handleLogin]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

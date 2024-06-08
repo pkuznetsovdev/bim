@@ -1,23 +1,28 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Post } from "./types";
-import { PostsService } from "./services";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Post } from './types';
+import { PostsService } from './service';
 
-export const getPosts = createAsyncThunk(
-  'getPosts',
-  async () => {
-      console.log('getPosts')
-    const response = await PostsService.getAll();
-    const data = await response.json();
+export const PostsController = {
+  getPosts: createAsyncThunk('getPosts', async () => {
+    try {
+      const { data } = await PostsService.getAll();
 
-    return data;
-})
+      return data;
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  }),
+  createPost: createAsyncThunk('createPost', async (newPost: Post) => {
+    try {
+      const { data } = await PostsService.create(newPost);
 
-export const createPost = createAsyncThunk(
-  'createPost',
-  async (newPost: Post) => {
-    const response = await PostsService.create(newPost);
-
-    const data = await response.json();
-
-    return data;
-})
+      return data;
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  }),
+};

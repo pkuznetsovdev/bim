@@ -1,5 +1,5 @@
 export const SLICE_STATUS = {
   loading: 'loading',
   error: 'error',
-  success: 'success'
+  success: 'success',
 } as const;

@@ -1,2 +1,4 @@
+import { PostsController } from './controllers';
+
 export * from './slice';
-export * from './controllers';
+export const PostsApi = PostsController;

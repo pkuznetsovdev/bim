@@ -1,8 +1,10 @@
-import { SLICE_STATUS } from "@constants";
+import { SLICE_STATUS } from '@constants';
 
-export type SliceStatus = typeof SLICE_STATUS[keyof typeof SLICE_STATUS];
+export * from '@store/types';
 
-export interface GenericSlice <T>{
+export type SliceStatus = (typeof SLICE_STATUS)[keyof typeof SLICE_STATUS];
+
+export interface GenericSlice<T> {
   data: T;
   status: SliceStatus;
   error: Error | null;
