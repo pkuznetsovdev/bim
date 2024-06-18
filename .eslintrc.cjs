@@ -33,7 +33,7 @@ module.exports = {
     'react-refresh/only-export-components': [1, { allowConstantExport: true }],
     'object-property-newline': [2, { allowAllPropertiesOnSameLine: false }],
     'react/function-component-definition': [
-      2,
+      1,
       { namedComponents: 'arrow-function' },
     ],
     'object-curly-newline': [

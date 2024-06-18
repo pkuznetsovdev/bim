@@ -1,6 +1,6 @@
 import { SLICE_STATUS } from '@constants';
 
-export * from '@store/types';
+export * from '../models/types';
 
 export type SliceStatus = (typeof SLICE_STATUS)[keyof typeof SLICE_STATUS];
 

@@ -4,7 +4,7 @@ export const useLocalStorage = <
   T extends Record<string, unknown> | null = null,
 >(
   keyName: string,
-  defaultValue?: T
+  defaultValue?: Partial<T>
 ) => {
   const [storedValue, setStoredValue] = useState<T | null>(() => {
     try {

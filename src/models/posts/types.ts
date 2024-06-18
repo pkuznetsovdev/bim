@@ -1,6 +1,4 @@
-import { GenericSlice, IsoString, PetDetails } from '@types';
-import { Pet } from '../pets/types';
-import { User } from '../user/types';
+import { GenericSlice, IsoString, PetDetails, Pet, User } from '@types';
 
 export type PostType = 'lost' | 'found';
 export type PostDescription = string;
@@ -9,11 +7,11 @@ interface PostDetailsBase {
   description: PostDescription;
 }
 
-interface PostDetailsLost extends PostDetailsBase {
+export interface PostDetailsLost extends PostDetailsBase {
   pet: Pet['id'];
 }
 
-interface PostDetailsFound extends PostDetailsBase {
+export interface PostDetailsFound extends PostDetailsBase {
   petDetails: Partial<PetDetails> & Pick<PetDetails, 'photos'>;
   user: User['id'];
 }

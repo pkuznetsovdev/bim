@@ -5,7 +5,7 @@ import { PetsController } from './controllers';
 
 const initialState: PetsState = {
   data: [],
-  status: SLICE_STATUS.success,
+  status: SLICE_STATUS.idle,
   error: null,
 };
 
@@ -40,4 +40,4 @@ const Pets = createSlice({
   },
 });
 
-export const PetsEReducer = Pets.reducer;
+export const petsReducer = Pets.reducer;

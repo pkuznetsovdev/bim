@@ -1,11 +1,17 @@
 import { createContext, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useLocalStorage } from '@hooks/use-local-storage.tsx';
 import type { User } from '@types';
-import { useStoreDispatch, UserApi } from '@store';
+import { UserApi } from '@models';
+import { useStoreDispatch } from '@store';
+
+type AuthLocalParams = {
+  email: string;
+  password: string;
+};
 
 type AuthContextType = {
   user: User | null;
-  login: (data: User) => Promise<void>;
+  login: (data: AuthLocalParams) => Promise<void>;
   logout: () => void;
 };
 
@@ -19,7 +25,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const dispatch = useStoreDispatch();
 
   const handleLogin = useCallback(
-    authData => {
+    (authData: AuthLocalParams) => {
       dispatch(UserApi.authLocal(authData));
     },
     [dispatch]

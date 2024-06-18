@@ -37,6 +37,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/api'),
       },
       {
+        find: '@models',
+        replacement: path.resolve(__dirname, 'src/models'),
+      },
+      {
         find: '@store',
         replacement: path.resolve(__dirname, 'src/store'),
       },

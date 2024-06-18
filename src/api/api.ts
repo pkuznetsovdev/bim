@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_API_PATH, PENDING_REQUEST_TIMEOUT } from './constants';
 import { RequestKey } from './types';
 import { getRequestKey } from './utils';
@@ -15,6 +15,10 @@ const axiosInstance = axios.create({
 
 // Add a request interceptor
 const pendingRequests = new Map<RequestKey, AbortController>();
+const removePendingRequest = (config: AxiosRequestConfig) => {
+  const requestKey = getRequestKey(config);
+  pendingRequests.delete(requestKey); // Remove completed request from the map
+};
 
 axiosInstance.interceptors.request.use(
   config => {
@@ -50,22 +54,19 @@ axiosInstance.interceptors.request.use(
 // Add a response interceptor
 axiosInstance.interceptors.response.use(
   response => {
-    const requestKey = getRequestKey(response.config);
-    pendingRequests.delete(requestKey); // Remove completed request from the map
+    removePendingRequest(response.config);
     return response;
   },
   error => {
+    if (error.config) {
+      removePendingRequest(error.config);
+    }
+
     /** React store double mount issue */
     if (error.code === 'ERR_CANCELED') {
-      const requestKey = getRequestKey(error.config);
-      pendingRequests.delete(requestKey); // Remove failed request from the map
       return Promise.resolve({ status: 499 });
     }
 
-    if (error.config) {
-      const requestKey = getRequestKey(error.config);
-      pendingRequests.delete(requestKey); // Remove failed request from the map
-    }
     return Promise.reject(error);
   }
 );

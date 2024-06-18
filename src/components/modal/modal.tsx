@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import { useNavigate } from 'react-router-dom';
 import './modal.scss';
@@ -55,8 +55,11 @@ export const Modal = ({
     return document.querySelector(MODAL_CONTAINER_SELECTOR);
   }, []);
 
+  const modalRef = useRef(null);
+
   return (
     <Transition
+      nodeRef={modalRef}
       timeout={timeout}
       in={isOpenModal}
       appear

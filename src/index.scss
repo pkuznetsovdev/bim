@@ -16,8 +16,24 @@ body {
   min-width: 100%;
   min-height: 100dvh;
   transition: height 0.2s;
+  background: #FFF;
+  color: #000;
 }
 
 p {
   color: green;
+}
+
+.logo {
+  width: 150px;
+}
+
+.card {
+  width: 80%;
+  border: 1px solid orange;
+  border-radius: 20px;
+
+  img {
+    width: 100px;
+  }
 }

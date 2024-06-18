@@ -1,5 +1,11 @@
 import { APP_PATHS } from '@constants';
-import { Link } from '@elements';
+import { Link, List } from "@elements";
+import { CommonComponentProps } from '@types';
+import classNames from 'classnames';
+
+const mainClass = 'navbar';
+
+interface NavbarProps extends CommonComponentProps {}
 
 const NAV_BAR_ROUTES = [
   {
@@ -24,18 +30,12 @@ const NAV_BAR_ROUTES = [
   },
 ];
 
-const mainClass = 'navbar';
+const NavbarItem = ({ path, name }: typeof NAV_BAR_ROUTES[number]) => <Link to={path} className={`${mainClass}__link`}>{name}</Link>
 
-export const Navbar = () => {
+export const Navbar = ({ className }: NavbarProps) => {
   return (
-    <nav className={mainClass}>
-      <ul className={`${mainClass}__links`}>
-        {NAV_BAR_ROUTES.map(({ path, name }) => (
-          <li key={path} className={`${mainClass}__link`}>
-            <Link to={path}>{name}</Link>
-          </li>
-        ))}
-      </ul>
+    <nav className={classNames(mainClass, className)}>
+      <List className={`${mainClass}__links`} items={NAV_BAR_ROUTES} ItemTemplate={NavbarItem} />
     </nav>
   );
 };

@@ -6,7 +6,7 @@ import { PostsController } from './controllers';
 
 const initialState: PostsState = {
   data: [],
-  status: SLICE_STATUS.success,
+  status: SLICE_STATUS.idle,
   error: null,
 };
 

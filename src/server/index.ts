@@ -1,6 +1,7 @@
-import { createServer } from 'miragejs';
+import { createServer, Response } from 'miragejs';
 import { BASE_API_PATH, API_PATHS } from '@api';
 import { db } from './db';
+import { getUserDetails } from './utils';
 
 const TIMEOUT = 1000;
 
@@ -12,9 +13,24 @@ createServer({
     this.post(
       API_PATHS.authLocal,
       (schema, request) => {
-        const data = JSON.parse(request.requestBody);
-        console.log(data);
-        return {};
+        const { data } = JSON.parse(request.requestBody);
+        const userDB = schema.db.users.findBy({ email: data.email });
+
+        if (userDB) {
+          const isPasswordCorrect = userDB.password === data.password;
+          if (isPasswordCorrect) {
+            return {
+              details: getUserDetails(userDB),
+              isAuthorized: true,
+            };
+          }
+        }
+
+        return new Response(
+          401,
+          { some: 'header' },
+          { errors: ['Credentials are incorrect'] }
+        );
       },
       { timing: TIMEOUT }
     );

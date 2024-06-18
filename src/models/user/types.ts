@@ -1,4 +1,4 @@
-import { Pet } from '../pets/types';
+import { GenericSlice, Pet } from '@types';
 
 export interface UserDetailsBase {}
 
@@ -19,3 +19,8 @@ export type User = UserDetails & {
   accountName?: string;
   pets?: Array<Pet['id']>;
 };
+
+export interface UserState extends Omit<GenericSlice<never>, 'data'> {
+  details?: User;
+  isAuthorized?: boolean;
+}
