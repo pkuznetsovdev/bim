@@ -1,5 +1,5 @@
 import { API, API_PATHS } from '@api';
-import { User, UserDetailsByEmail } from './types';
+import type { User, UserDetailsByEmail } from '@types';
 
 const USER_ENDPOINTS = (() => {
   const base = API_PATHS.users;

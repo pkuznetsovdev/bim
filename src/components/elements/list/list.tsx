@@ -1,6 +1,6 @@
 import { CommonComponentProps } from '@types';
 import classNames from 'classnames';
-import type { ComponentType } from "react";
+import type { ComponentType } from 'react';
 
 const mainClass = 'list';
 const itemClass = 'item';
@@ -15,13 +15,17 @@ export const List = <Item,>({
   className,
   items,
   ItemTemplate,
-                              itemKeyPropName,
+  itemKeyPropName,
 }: ListProps<Item>) => {
   return (
     <ul className={classNames(mainClass, className)}>
       {items.map((item, idx) => (
         <li
-          key={itemKeyPropName && item[itemKeyPropName] ? `${item[itemKeyPropName]}` : idx}
+          key={
+            itemKeyPropName && item[itemKeyPropName]
+              ? `${item[itemKeyPropName]}`
+              : idx
+          }
           className={classNames(itemClass)}
         >
           {/* @ts-expect-error TODO: TS ERROR */}
@@ -30,4 +34,4 @@ export const List = <Item,>({
       ))}
     </ul>
   );
-}
+};

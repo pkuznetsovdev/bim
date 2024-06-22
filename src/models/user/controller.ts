@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User } from './types';
+import type { User } from '@types';
 import { UserService } from './service';
 
 export const UserController = {

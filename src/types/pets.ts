@@ -1,5 +1,6 @@
-import { GenericSlice, IsoString } from '@types';
-import { PET_STATUS } from './constants';
+import { PET_STATUS } from '@constants';
+import type { IsoString } from './date';
+import type { GenericSlice } from './store';
 
 export type PetType = string;
 export type PetBreed = string;

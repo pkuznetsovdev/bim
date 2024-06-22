@@ -15,7 +15,7 @@ export const Link = ({
   isExternal,
   href,
   text,
-                       className,
+  className,
   ...props
 }: LinkProps) => {
   const classes = classNames(mainClass, className);
@@ -30,5 +30,9 @@ export const Link = ({
     );
   }
 
-  return <NavLink {...props} className={classes}>{text || children}</NavLink>;
+  return (
+    <NavLink {...props} className={classes}>
+      {text || children}
+    </NavLink>
+  );
 };

@@ -1,4 +1,5 @@
-import { GenericSlice, Pet } from '@types';
+import type { Pet } from './pets';
+import type { GenericSlice } from './store';
 
 export interface UserDetailsBase {}
 

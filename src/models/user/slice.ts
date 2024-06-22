@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isCancelledRequestError } from '@api/utils.ts';
 import { SLICE_STATUS } from '@constants';
+import type { UserState } from '@types';
 import { UserController } from './controller';
-import { UserState } from './types';
 
 const initialState: UserState = {
   status: SLICE_STATUS.idle,
