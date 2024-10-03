@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, PropsWithChildren } from 'react';
 import { useSelector } from 'react-redux';
 import { useGetPostsQuery, UserApi } from '@models';
 import { RootState, useStoreDispatch } from '@store';
@@ -9,7 +9,7 @@ const PostTemplate = ({
   description,
   id,
   petDetails,
-}: React.PropsWithChildren<Post & PostDetailsFound>) => {
+}: PropsWithChildren<Post & PostDetailsFound>) => {
   return (
     <div className="card">
       <h4>{description}</h4>
@@ -24,7 +24,7 @@ export const Posts = () => {
 
   const { data: posts = [], isError, isLoading } = useGetPostsQuery();
 
-  console.log('posts: ', posts);
+  // console.log('posts: ', posts);
 
   const handleLogin = useCallback(
     (params: unknown) => {

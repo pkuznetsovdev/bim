@@ -3,3 +3,4 @@ export * from './modals';
 export * from './store';
 export * from './api';
 export * from './pets';
+export * from './breakpoints';
