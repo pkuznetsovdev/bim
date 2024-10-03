@@ -5,7 +5,6 @@ import { PostDetails } from './post-details';
 import { PetDetails } from './pet-details';
 import { NewPost } from './new-post';
 import { NewPet } from './new-pet';
-import { Test } from './test';
 
 export const Pages = {
   Home,
@@ -15,5 +14,4 @@ export const Pages = {
   PetDetails,
   NewPost,
   NewPet,
-  Test,
 };
