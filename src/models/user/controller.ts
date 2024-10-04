@@ -22,7 +22,7 @@ export const UserController = {
       } catch (error) {
         return thunkAPI.rejectWithValue(error?.response || error);
       }
-    }
+    },
   ),
   authLocal: createAsyncThunk(
     'authLocal',
@@ -34,6 +34,6 @@ export const UserController = {
       } catch (error) {
         return thunkAPI.rejectWithValue(error?.response || error);
       }
-    }
+    },
   ),
 };

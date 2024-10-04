@@ -7,17 +7,15 @@ const TAG_TYPE = 'posts' as const;
 
 export const postsApi = createApi({
   reducerPath: 'posts',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_API_PATH}/posts`,
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_API_PATH}/posts` }),
   tagTypes: [TAG_TYPE],
-  endpoints: build => ({
+  endpoints: (build) => ({
     getPosts: build.query<Array<Post>, void>({
       query: () => '',
       providesTags: getProvidesTags<typeof TAG_TYPE, Array<Post>>(TAG_TYPE),
     }),
     createPost: build.mutation<Post, PostDetails>({
-      query: body => ({
+      query: (body) => ({
         url: '',
         method: 'POST',
         body,

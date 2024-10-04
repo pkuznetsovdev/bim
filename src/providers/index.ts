@@ -1,2 +1,2 @@
 export * from './auth-provider';
-export * from './breakpoints-provider'
+export * from './breakpoints-provider';

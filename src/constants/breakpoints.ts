@@ -8,4 +8,6 @@ export const BREAKPOINTS = {
   xxl: 1920,
 } as const;
 
-export const BREAKPOINT_KEYS = Object.keys(BREAKPOINTS) as Array<keyof typeof BREAKPOINTS>;
+export const BREAKPOINT_KEYS = Object.keys(BREAKPOINTS) as Array<
+  keyof typeof BREAKPOINTS
+>;

@@ -5,16 +5,16 @@ import { Provider } from 'react-redux';
 import { store } from '@store';
 import { BreakpointsProvider } from '@providers';
 
-const App = () => {
+function App() {
   return (
     <Provider store={store}>
-      <BreakpointsProvider >
+      <BreakpointsProvider>
         {/* <AuthProvider> */}
         <RouterProvider router={router} />
         {/* </AuthProvider> */}
       </BreakpointsProvider>
     </Provider>
   );
-};
+}
 
 export default App;

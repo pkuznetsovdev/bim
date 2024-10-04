@@ -1,27 +1,32 @@
-import { CommonComponentProps } from '@types';
 import classNames from 'classnames';
-import type { ComponentType } from 'react';
-import { getClassNameByMods } from "@utils";
+import type { ComponentPropsWithoutRef, ComponentType } from 'react';
+import { getClassNameByMods } from '@utils';
 
 const mainClass = 'list';
 const itemClass = 'item';
 
-interface ListProps<Item> extends CommonComponentProps {
+interface ListProps<Item> extends ComponentPropsWithoutRef<'ul'> {
   items: Array<Item>;
-  ItemTemplate: ComponentType<Item & CommonComponentProps>;
+  ItemTemplate: ComponentType<Item>;
   itemKeyPropName?: keyof Item;
   mods?: ElementMods;
 }
 
-export const List = <Item,>({
+export function List<Item>({
   className,
   items,
   ItemTemplate,
   itemKeyPropName,
   mods,
-}: ListProps<Item>) => {
+}: ListProps<Item>) {
   return (
-    <ul className={classNames(className,mainClass, getClassNameByMods(mainClass, mods))}>
+    <ul
+      className={classNames(
+        className,
+        mainClass,
+        getClassNameByMods(mainClass, mods),
+      )}
+    >
       {items.map((item, idx) => (
         <li
           key={
@@ -37,4 +42,4 @@ export const List = <Item,>({
       ))}
     </ul>
   );
-};
+}

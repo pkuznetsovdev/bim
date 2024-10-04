@@ -1,39 +1,54 @@
-import { createContext, PropsWithChildren, useEffect, useMemo, useState } from "react";
-import { BreakpointKey } from "@types";
-import { BREAKPOINT_KEYS, BREAKPOINTS } from "@constants";
-import { capitalize } from "@utils";
-import { useThrottle } from "@hooks";
+import {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { BreakpointKey } from '@types';
+import { BREAKPOINT_KEYS, BREAKPOINTS } from '@constants';
+import { capitalize } from '@utils';
+import { useThrottle } from '@hooks/use-throttle';
 
-type BreakpointsContextType = Record<`is${Capitalize<BreakpointKey>}` | `isAbove${Capitalize<BreakpointKey>}`, boolean> & {
+type BreakpointsContextType = Record<
+  `is${Capitalize<BreakpointKey>}` | `isAbove${Capitalize<BreakpointKey>}`,
+  boolean
+> & {
   bpName: BreakpointKey;
 };
 
 const getBreakPoints = (screenWidth: number) => {
-  const isExactAndAboveResults = BREAKPOINT_KEYS.reduce((res, bpKey, bpIndex) => {
-    const bpValue = BREAKPOINTS[BREAKPOINT_KEYS[bpIndex]];
-    const nextBpValue = BREAKPOINTS[BREAKPOINT_KEYS[bpIndex + 1]];
+  const isExactAndAboveResults = BREAKPOINT_KEYS.reduce(
+    (res, bpKey, bpIndex) => {
+      const bpValue = BREAKPOINTS[BREAKPOINT_KEYS[bpIndex]];
+      const nextBpValue = BREAKPOINTS[BREAKPOINT_KEYS[bpIndex + 1]];
 
-    const isAboveBp = screenWidth >= bpValue;
-    const isExactBp = isAboveBp && (!nextBpValue || screenWidth < nextBpValue);
+      const isAboveBp = screenWidth >= bpValue;
+      const isExactBp =
+        isAboveBp && (!nextBpValue || screenWidth < nextBpValue);
 
-    return {
-      ...res,
-      [`isAbove${capitalize(bpKey)}`]: screenWidth >= bpValue,
-      [`is${capitalize(bpKey)}`]: isExactBp,
-      bpName: isExactBp ? bpKey : res.bpName,
-    };
-  }, {} as BreakpointsContextType);
+      return {
+        ...res,
+        [`isAbove${capitalize(bpKey)}`]: screenWidth >= bpValue,
+        [`is${capitalize(bpKey)}`]: isExactBp,
+        bpName: isExactBp ? bpKey : res.bpName,
+      };
+    },
+    {} as BreakpointsContextType,
+  );
 
   return {
     ...isExactAndAboveResults,
     isMobile: !isExactAndAboveResults.isAboveSm,
     isDesktop: isExactAndAboveResults.isAboveSm,
   };
-}
+};
 
-export const BreakpointsContext = createContext(getBreakPoints(window.innerWidth));
+export const BreakpointsContext = createContext(
+  getBreakPoints(window.innerWidth),
+);
 
-export const BreakpointsProvider = ({ children }: PropsWithChildren) => {
+export function BreakpointsProvider({ children }: PropsWithChildren) {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -42,18 +57,25 @@ export const BreakpointsProvider = ({ children }: PropsWithChildren) => {
   const handleResize = useThrottle(() => {
     setWindowSize({
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     });
   });
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [handleResize]);
 
-  const value = useMemo(() => getBreakPoints(windowSize.width), [windowSize.width]);
+  const value = useMemo(
+    () => getBreakPoints(windowSize.width),
+    [windowSize.width],
+  );
 
-  return <BreakpointsContext.Provider value={value}>{children}</BreakpointsContext.Provider>;
-};
+  return (
+    <BreakpointsContext.Provider value={value}>
+      {children}
+    </BreakpointsContext.Provider>
+  );
+}

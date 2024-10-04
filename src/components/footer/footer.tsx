@@ -1,10 +1,10 @@
-import { CommonComponentProps } from '@types';
 import classNames from 'classnames';
+import { ComponentPropsWithoutRef } from 'react';
 
 const mainClass = 'footer';
 
-interface FooterProps extends CommonComponentProps {}
+interface FooterProps extends ComponentPropsWithoutRef<'footer'> {}
 
-export const Footer = ({ className }: FooterProps) => {
-  return <footer className={classNames(className,mainClass)}>Footer</footer>;
-};
+export function Footer({ className }: FooterProps) {
+  return <footer className={classNames(className, mainClass)}>Footer</footer>;
+}

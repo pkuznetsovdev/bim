@@ -11,20 +11,15 @@ export const getQuery = (queryParams?: Record<string, unknown>) => {
   return `?${createSearchParams(queryParams)}`;
 };
 
-export const getLink = (
-  path: string,
-  queryParams?: Record<string, unknown>
-) => {
-  return `${path === '' ? window.location.pathname : path}${getQuery(queryParams)}`;
-};
+export const getLink = (path: string, queryParams?: Record<string, unknown>) =>
+  `${path === '' ? window.location.pathname : path}${getQuery(queryParams)}`;
 
 export const getModalLink = (
   modalId: ModalId,
   path = '',
-  queryParams?: Record<string, unknown>
-) => {
-  return getLink(path, {
+  queryParams?: Record<string, unknown>,
+) =>
+  getLink(path, {
     [modalId]: MODAL_QUERY_PARAM_VALUE,
     ...(queryParams || {}),
   });
-};

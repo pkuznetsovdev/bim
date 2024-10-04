@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 import { AppModals, Navbar, Header, Footer } from '@components';
 
-export const LayoutMain = () => {
+export function LayoutMain() {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ export const LayoutMain = () => {
       <Footer />
     </div>
   );
-};
+}

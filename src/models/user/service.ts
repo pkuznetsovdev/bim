@@ -10,11 +10,7 @@ const USER_ENDPOINTS = (() => {
   } as const;
 })();
 
-const AUTH_ENDPOINTS = (() => {
-  return {
-    authLocal: API_PATHS.authLocal,
-  } as const;
-})();
+const AUTH_ENDPOINTS = (() => ({ authLocal: API_PATHS.authLocal }) as const)();
 
 export const UserService = {
   getAll: async () => {
@@ -32,9 +28,7 @@ export const UserService = {
 
   /** AUTH  */
   authLocal: async (user: UserDetailsByEmail & { password: string }) => {
-    const res = await API.post(AUTH_ENDPOINTS.authLocal, {
-      data: user,
-    });
+    const res = await API.post(AUTH_ENDPOINTS.authLocal, { data: user });
 
     return res;
   },

@@ -32,13 +32,13 @@ const NAV_BAR_ROUTES: Array<NavLinkProps> = [
   },
 ];
 
-const NavbarItem = (navLink: (typeof NAV_BAR_ROUTES)[number]) => (
-  <NavLink {...navLink} className={`${mainClass}__link`} />
-);
+function NavbarItem(navLink: (typeof NAV_BAR_ROUTES)[number]) {
+  return <NavLink {...navLink} className={`${mainClass}__link`} />;
+}
 
-export const Navbar = ({ className }: NavbarProps) => {
+export function Navbar({ className }: NavbarProps) {
   return (
-    <nav className={classNames(className,mainClass)}>
+    <nav className={classNames(className, mainClass)}>
       <List
         className={`${mainClass}__links`}
         items={NAV_BAR_ROUTES}
@@ -46,4 +46,4 @@ export const Navbar = ({ className }: NavbarProps) => {
       />
     </nav>
   );
-};
+}

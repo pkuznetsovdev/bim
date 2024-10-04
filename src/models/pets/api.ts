@@ -7,17 +7,15 @@ const TAG_TYPE = 'pets' as const;
 
 export const petsApi = createApi({
   reducerPath: 'pets',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_API_PATH}/pets`,
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_API_PATH}/pets` }),
   tagTypes: [TAG_TYPE],
-  endpoints: build => ({
+  endpoints: (build) => ({
     getPets: build.query<Array<Pet>, void>({
       query: () => '',
       providesTags: getProvidesTags<typeof TAG_TYPE, Array<Pet>>(TAG_TYPE),
     }),
     createPet: build.mutation<Pet, PetDetails>({
-      query: body => ({
+      query: (body) => ({
         url: '',
         method: 'PET',
         body,

@@ -1,3 +1,3 @@
-export const NewPet = () => {
+export function NewPet() {
   return <h1>New Pet Page</h1>;
-};
+}

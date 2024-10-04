@@ -7,9 +7,7 @@ import { getRequestKey } from './utils';
 const axiosInstance = axios.create({
   baseURL: BASE_API_PATH,
   timeout: PENDING_REQUEST_TIMEOUT,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });
 
@@ -21,7 +19,7 @@ const removePendingRequest = (config: AxiosRequestConfig) => {
 };
 
 axiosInstance.interceptors.request.use(
-  config => {
+  (config) => {
     const requestKey = getRequestKey(config);
 
     // Cancel any existing request with the same key
@@ -46,18 +44,16 @@ axiosInstance.interceptors.request.use(
 
     return config;
   },
-  error => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error),
 );
 
 // Add a response interceptor
 axiosInstance.interceptors.response.use(
-  response => {
+  (response) => {
     removePendingRequest(response.config);
     return response;
   },
-  error => {
+  (error) => {
     if (error.config) {
       removePendingRequest(error.config);
     }
@@ -68,7 +64,7 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export const API = axiosInstance;

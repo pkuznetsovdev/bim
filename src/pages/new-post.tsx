@@ -1,6 +1,6 @@
 import { useAuth } from '@hooks';
 
-export const NewPost = () => {
+export function NewPost() {
   const { logout } = useAuth();
   return (
     <>
@@ -10,4 +10,4 @@ export const NewPost = () => {
       </button>
     </>
   );
-};
+}

@@ -1,7 +1,10 @@
 import { useCallback, useRef, useEffect } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const useDebounce = <Callback extends Function>(callback: Callback, delay = 300) => {
+export const useDebounce = <Callback extends Function>(
+  callback: Callback,
+  delay = 300,
+) => {
   const handlerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const debouncedCallback = useCallback(
@@ -18,13 +21,14 @@ export const useDebounce = <Callback extends Function>(callback: Callback, delay
   );
 
   // Cleanup
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       if (handlerRef.current) {
         clearTimeout(handlerRef.current);
       }
-    };
-  }, []);
+    },
+    [],
+  );
 
   return debouncedCallback;
 };

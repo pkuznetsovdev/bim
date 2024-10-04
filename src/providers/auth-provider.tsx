@@ -19,7 +19,7 @@ export const AuthContext = createContext<
   AuthContextType | Record<string, never>
 >({});
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
+export function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useLocalStorage<User>('user');
 
   const dispatch = useStoreDispatch();
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     (authData: AuthLocalParams) => {
       dispatch(UserApi.authLocal(authData));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const value = useMemo(
@@ -38,8 +38,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         login: handleLogin,
         logout: () => setUser(null),
       }) as const,
-    [user, setUser, handleLogin]
+    [user, setUser, handleLogin],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}

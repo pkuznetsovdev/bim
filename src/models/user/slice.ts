@@ -13,7 +13,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     /** authLocal  */
     builder.addCase(UserController.authLocal.fulfilled, (state, action) => {
       if (!isCancelledRequestError(action?.payload?.error?.status)) {
@@ -22,7 +22,7 @@ const userSlice = createSlice({
         state.status = SLICE_STATUS.success;
       }
     });
-    builder.addCase(UserController.authLocal.pending, state => {
+    builder.addCase(UserController.authLocal.pending, (state) => {
       state.status = SLICE_STATUS.loading;
     });
     builder.addCase(UserController.authLocal.rejected, (state, action) => {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 import classNames from 'classnames';
-import { getClassNameByMods, isExternalUrl } from "@utils";
+import { getClassNameByMods, isExternalUrl } from '@utils';
 
 interface LinkInternalTemplateProps {
   isExternal?: Falsy;
@@ -15,11 +15,11 @@ interface LinkExternalTemplateProps {
 type LinkTemplateProps = LinkProps & {
   text?: string;
   mods?: ElementMods;
-} & ( LinkInternalTemplateProps | LinkExternalTemplateProps)
+} & (LinkInternalTemplateProps | LinkExternalTemplateProps);
 
 const mainClass = 'link';
 
-const LinkTemplate = ({
+function LinkTemplate({
   children,
   isExternal,
   to,
@@ -27,8 +27,12 @@ const LinkTemplate = ({
   className,
   mods,
   ...props
-}: LinkTemplateProps) => {
-  const classes = classNames(className,mainClass, getClassNameByMods(mainClass, mods));
+}: LinkTemplateProps) {
+  const classes = classNames(
+    className,
+    mainClass,
+    getClassNameByMods(mainClass, mods),
+  );
   const isExternalLink = isExternal || isExternalUrl(to);
 
   if (isExternalLink) {
@@ -44,6 +48,6 @@ const LinkTemplate = ({
       {text || children}
     </Link>
   );
-};
+}
 
 export { LinkTemplate as Link };

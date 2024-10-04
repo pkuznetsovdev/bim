@@ -39,6 +39,6 @@
     },
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["src", ".eslintrc.cjs"],
+  "include": ["src", ".eslintrc", ".prettierrc"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

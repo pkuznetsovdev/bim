@@ -8,7 +8,7 @@ export function getInvalidateTags<TagType>(tagType: TagType) {
 }
 
 export function getProvidesTags<TagType, Result extends Array<{ id: number }>>(
-  tagType: TagType
+  tagType: TagType,
 ) {
   return (result: Result | undefined) =>
     result

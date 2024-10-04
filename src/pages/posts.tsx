@@ -5,11 +5,10 @@ import { RootState, useStoreDispatch } from '@store';
 import { List } from '@elements';
 import type { Post, PostDetailsFound } from '@types';
 
-const PostTemplate = ({
+function PostTemplate({
   description,
-  id,
   petDetails,
-}: PropsWithChildren<Post & PostDetailsFound>) => {
+}: PropsWithChildren<Post & PostDetailsFound>) {
   return (
     <div className="card">
       <h4>{description}</h4>
@@ -17,29 +16,26 @@ const PostTemplate = ({
       <p>other post details</p>
     </div>
   );
-};
+}
 
-export const Posts = () => {
+export function Posts() {
   const dispatch = useStoreDispatch();
 
-  const { data: posts = [], isError, isLoading } = useGetPostsQuery();
+  const { data: posts, isLoading } = useGetPostsQuery();
 
   // console.log('posts: ', posts);
 
-  const handleLogin = useCallback(
-    (params: unknown) => {
-      dispatch(
-        UserApi.authLocal({
-          email: 'user1@test.com',
-          password: 'user1',
-        })
-      );
-    },
-    [dispatch]
-  );
+  const handleLogin = useCallback(() => {
+    dispatch(
+      UserApi.authLocal({
+        email: 'user1@test.com',
+        password: 'user1',
+      }),
+    );
+  }, [dispatch]);
 
   const userData = useSelector<RootState, RootState['user']>(
-    state => state.user
+    (state) => state.user,
   );
 
   return (
@@ -62,4 +58,4 @@ export const Posts = () => {
       )}
     </>
   );
-};
+}

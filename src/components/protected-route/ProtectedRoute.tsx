@@ -4,7 +4,7 @@ import { APP_PATHS } from '@constants';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@models';
 
-export const ProtectedRoute = ({ children }: React.PropsWithChildren) => {
+export function ProtectedRoute({ children }: React.PropsWithChildren) {
   const userData = useSelector(selectUser);
 
   if (!userData.isAuthorized) {
@@ -12,4 +12,4 @@ export const ProtectedRoute = ({ children }: React.PropsWithChildren) => {
   }
 
   return children;
-};
+}

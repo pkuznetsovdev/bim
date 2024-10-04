@@ -9,10 +9,11 @@ export const store = configureStore({
     user: userReducer,
   },
   devTools: true,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(postsApi.middleware, petsApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      postsApi.middleware,
+      petsApi.middleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

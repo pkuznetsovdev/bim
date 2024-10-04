@@ -5,14 +5,14 @@ const mainClass = 'header';
 
 interface HeaderProps extends CommonComponentProps {}
 
-export const Header = ({ className }: HeaderProps) => {
+export function Header({ className }: HeaderProps) {
   return (
-    <header className={classNames(className,mainClass)}>
+    <header className={classNames(className, mainClass)}>
       <img
-        className={classNames(className,mainClass, 'logo')}
+        className={classNames(className, mainClass, 'logo')}
         src="https://avatars.dzeninfra.ru/get-zen_doc/1219682/pub_5e4c18346754405ed3b895ad_5e4c2ff15c1f4e253331964b/scale_1200"
         alt=""
       />
     </header>
   );
-};
+}
