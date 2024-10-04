@@ -1,44 +1,44 @@
 import { APP_PATHS } from '@constants';
-import { Link, List } from '@elements';
-import { CommonComponentProps } from '@types';
+import { NavLink, List } from '@elements';
+import type { NavLinkProps } from '@elements';
+import type { CommonComponentProps } from '@types';
 import classNames from 'classnames';
 
 const mainClass = 'navbar';
 
 interface NavbarProps extends CommonComponentProps {}
 
-const NAV_BAR_ROUTES = [
+const NAV_BAR_ROUTES: Array<NavLinkProps> = [
   {
-    path: APP_PATHS.root,
-    name: 'Home',
+    to: APP_PATHS.home,
+    text: 'Home',
+    end: true,
   },
   {
-    path: APP_PATHS.user,
-    name: 'Account',
+    to: APP_PATHS.user,
+    text: 'Account',
   },
   {
-    path: APP_PATHS.petNew,
-    name: 'New pet',
+    to: APP_PATHS.petNew,
+    text: 'New pet',
   },
   {
-    path: APP_PATHS.postNew,
-    name: 'New post',
+    to: APP_PATHS.postNew,
+    text: 'New post',
   },
   {
-    path: `${APP_PATHS.posts}/123`,
-    name: 'Post #123 details ',
+    to: `${APP_PATHS.posts}/123`,
+    text: 'Post #123 details',
   },
 ];
 
-const NavbarItem = ({ path, name }: (typeof NAV_BAR_ROUTES)[number]) => (
-  <Link to={path} className={`${mainClass}__link`}>
-    {name}
-  </Link>
+const NavbarItem = (navLink: (typeof NAV_BAR_ROUTES)[number]) => (
+  <NavLink {...navLink} className={`${mainClass}__link`} />
 );
 
 export const Navbar = ({ className }: NavbarProps) => {
   return (
-    <nav className={classNames(mainClass, className)}>
+    <nav className={classNames(className,mainClass)}>
       <List
         className={`${mainClass}__links`}
         items={NAV_BAR_ROUTES}

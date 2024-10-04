@@ -1,38 +1,49 @@
-import { NavLink } from 'react-router-dom';
-import type { NavLinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 import classNames from 'classnames';
+import { getClassNameByMods, isExternalUrl } from "@utils";
 
-interface LinkProps extends NavLinkProps {
-  isExternal?: boolean;
-  href?: HTMLAnchorElement['href'];
-  text?: string;
+interface LinkInternalTemplateProps {
+  isExternal?: Falsy;
 }
+
+interface LinkExternalTemplateProps {
+  isExternal?: true;
+  to: string;
+}
+
+type LinkTemplateProps = LinkProps & {
+  text?: string;
+  mods?: ElementMods;
+} & ( LinkInternalTemplateProps | LinkExternalTemplateProps)
 
 const mainClass = 'link';
 
-export const Link = ({
+const LinkTemplate = ({
   children,
   isExternal,
-  href,
+  to,
   text,
   className,
+  mods,
   ...props
-}: LinkProps) => {
-  const classes = classNames(mainClass, className);
+}: LinkTemplateProps) => {
+  const classes = classNames(className,mainClass, getClassNameByMods(mainClass, mods));
+  const isExternalLink = isExternal || isExternalUrl(to);
 
-  if (isExternal) {
+  if (isExternalLink) {
     return (
-      /*  @ts-expect-error TODO: TS ERROR */
-      <a href={href || props.to} {...props} className={classes}>
-        {/*  @ts-expect-error TODO: TS ERROR */}
+      <a href={to as string} {...props} className={classes}>
         {text || children}
       </a>
     );
   }
 
   return (
-    <NavLink {...props} className={classes}>
+    <Link {...props} to={to} className={classes}>
       {text || children}
-    </NavLink>
+    </Link>
   );
 };
+
+export { LinkTemplate as Link };

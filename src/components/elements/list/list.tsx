@@ -1,6 +1,7 @@
 import { CommonComponentProps } from '@types';
 import classNames from 'classnames';
 import type { ComponentType } from 'react';
+import { getClassNameByMods } from "@utils";
 
 const mainClass = 'list';
 const itemClass = 'item';
@@ -9,6 +10,7 @@ interface ListProps<Item> extends CommonComponentProps {
   items: Array<Item>;
   ItemTemplate: ComponentType<Item & CommonComponentProps>;
   itemKeyPropName?: keyof Item;
+  mods?: ElementMods;
 }
 
 export const List = <Item,>({
@@ -16,9 +18,10 @@ export const List = <Item,>({
   items,
   ItemTemplate,
   itemKeyPropName,
+  mods,
 }: ListProps<Item>) => {
   return (
-    <ul className={classNames(mainClass, className)}>
+    <ul className={classNames(className,mainClass, getClassNameByMods(mainClass, mods))}>
       {items.map((item, idx) => (
         <li
           key={

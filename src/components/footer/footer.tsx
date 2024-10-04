@@ -6,5 +6,5 @@ const mainClass = 'footer';
 interface FooterProps extends CommonComponentProps {}
 
 export const Footer = ({ className }: FooterProps) => {
-  return <footer className={classNames(mainClass, className)}>Footer</footer>;
+  return <footer className={classNames(className,mainClass)}>Footer</footer>;
 };
