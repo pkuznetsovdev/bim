@@ -37,8 +37,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/api'),
       },
       {
-        find: '@models',
-        replacement: path.resolve(__dirname, 'src/models'),
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api'),
       },
       {
         find: '@store',
@@ -52,13 +52,19 @@ export default defineConfig({
         find: '@providers',
         replacement: path.resolve(__dirname, 'src/providers'),
       },
+      {
+        find: '@styles',
+        replacement: path.resolve(__dirname, 'src/styles'),
+      },
+      {
+        find: '@router',
+        replacement: path.resolve(__dirname, 'src/router'),
+      },
     ],
   },
   css: {
     preprocessorOptions: {
-      scss: {
-        implementation: sass,
-      },
+      implementation: sass,
     },
   },
 });

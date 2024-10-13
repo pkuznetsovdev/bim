@@ -1,0 +1,9 @@
+@use "sass:map";
+
+@mixin apply-theme($theme) {
+  --primary-font-color: #{map.get($theme, primary-font-color)};
+  --secondary-font-color: #{map.get($theme, secondary-font-color)};
+  --caption-font-color: #{map.get($theme, caption-font-color)};
+  --title-font-color: #{map.get($theme, title-font-color)};
+  --background-color: #{map.get($theme, background-color)};
+}

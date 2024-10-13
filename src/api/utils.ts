@@ -1,17 +1,26 @@
-import { AxiosRequestConfig } from 'axios';
-import { RequestKey } from './types';
-import { CANCELLED_REQUEST_STATUS } from './constants';
+export function getInvalidateTags<TagType>(tagType: TagType) {
+  return [
+    {
+      type: tagType,
+      id: 'LIST',
+    },
+  ];
+}
 
-/** Helper function to generate a unique key for each request  */
-export const getRequestKey = (config: AxiosRequestConfig): RequestKey => {
-  const { method, url, params, data, abortStrategy } = config;
-
-  if (abortStrategy === 'url') {
-    return [method, url].join('&');
-  }
-
-  return [method, url, JSON.stringify(params), JSON.stringify(data)].join('&');
-};
-
-export const isCancelledRequestError = (errorStatus: number | undefined) =>
-  errorStatus === CANCELLED_REQUEST_STATUS;
+export function getProvidesTags<TagType, Result extends Array<{ id: number }>>(
+  tagType: TagType,
+) {
+  return (result: Result | undefined) =>
+    result
+      ? [
+          ...result.map(({ id }) => ({
+            type: tagType,
+            id,
+          })),
+          {
+            type: tagType,
+            id: 'LIST',
+          },
+        ]
+      : getInvalidateTags(tagType);
+}

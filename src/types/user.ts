@@ -25,3 +25,9 @@ export interface UserState extends Omit<GenericSlice<never>, 'data'> {
   details?: User;
   isAuthorized?: boolean;
 }
+
+export interface NewUserByEmail extends UserDetailsByEmail {
+  password: string;
+}
+
+export interface NewUserByPhoneNumber extends UserDetailsByPhoneNumber {}

@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router';
 import { AppModals, Navbar, Header, Footer } from '@components';
 
+const mainClass = 'layout-main';
+
 export function LayoutMain() {
   return (
-    <div>
+    <div className={mainClass}>
       <Header />
       <h3>Main layout</h3>
       <Navbar />

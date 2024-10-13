@@ -27,15 +27,15 @@
       "@components": ["src/components"],
       "@constants": ["src/constants"],
       "@types": ["src/types"],
+      "@styles": ["src/styles/index.scss"],
       "@hooks": ["src/hooks"],
       "@hooks/*": ["src/hooks/*"],
       "@api": ["src/api"],
       "@api/*": ["src/api/*"],
-      "@models": ["src/models"],
-      "@models/*": ["src/models/*"],
       "@store": ["src/store"],
       "@utils": ["src/utils"],
-      "@providers": ["src/providers"]
+      "@providers": ["src/providers"],
+      "@router": ["src/router"]
     },
     "typeRoots": ["node_modules/@types"]
   },

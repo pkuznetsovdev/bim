@@ -1,20 +1,14 @@
-import './App.scss';
+import '@styles/index.scss';
+import { Providers } from '@providers';
 import { RouterProvider } from 'react-router-dom';
-import { router } from 'src/router';
-import { Provider } from 'react-redux';
-import { store } from '@store';
-import { BreakpointsProvider } from '@providers';
+import { router } from '@router';
 
-function App() {
+const App = () => {
   return (
-    <Provider store={store}>
-      <BreakpointsProvider>
-        {/* <AuthProvider> */}
-        <RouterProvider router={router} />
-        {/* </AuthProvider> */}
-      </BreakpointsProvider>
-    </Provider>
+    <Providers>
+      <RouterProvider router={router} />
+    </Providers>
   );
-}
+};
 
 export default App;

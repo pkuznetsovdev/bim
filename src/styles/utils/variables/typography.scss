@@ -1,0 +1,27 @@
+@use 'colors';
+
+/** titles */
+$title-font-color: colors.$black;
+$title-font-color-dark: colors.$gray-100;
+$title-font-size: 24px;
+$subtitle-font-size: 20px;
+
+/** caption text */
+$caption-font-color: colors.$black;
+$caption-font-color-dark: colors.$gray-100;
+$caption-font-size: 10px;
+$caption-line-height: 1.2;
+
+/** secondary text */
+$secondary-font-color: colors.$black;
+$secondary-font-color-dark: colors.$gray-100;
+$secondary-font-size: 14px;
+
+/** primary text */
+$primary-font-color: colors.$black;
+$primary-font-color-dark: colors.$gray-100;
+$primary-font-size: 16px;
+$primary-line-height: 1.4;
+
+
+$font-family: 'Inter', sans-serif;

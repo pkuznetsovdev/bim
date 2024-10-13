@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { BreakpointKey } from '@types';
 import { BREAKPOINT_KEYS } from '@constants';
-import { useIsBreakpoint } from './use-is-breakpoint';
+import { useIsBreakpoint } from '@providers';
 
 const getValueByBreakpoint =
   (currentBpKey: BreakpointKey) =>

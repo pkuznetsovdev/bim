@@ -17,7 +17,7 @@ export const petsApi = createApi({
     createPet: build.mutation<Pet, PetDetails>({
       query: (body) => ({
         url: '',
-        method: 'PET',
+        method: 'POST',
         body,
       }),
       invalidatesTags: getInvalidateTags(TAG_TYPE),

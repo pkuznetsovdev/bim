@@ -6,3 +6,4 @@ export * from './posts';
 export * from './pets';
 export * from './user';
 export * from './breakpoints';
+export * from './auth';

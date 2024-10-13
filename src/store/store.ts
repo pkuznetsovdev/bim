@@ -1,18 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { petsApi, userReducer, postsApi } from '@models';
+import { petsApi, usersApi, postsApi, authApi } from 'src/api';
+import { userSliceReducer } from './user';
 
 export const store = configureStore({
   reducer: {
     [postsApi.reducerPath]: postsApi.reducer,
     [petsApi.reducerPath]: petsApi.reducer,
-    user: userReducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+    user: userSliceReducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       postsApi.middleware,
       petsApi.middleware,
+      authApi.middleware,
+      usersApi.middleware,
     ),
 });
 

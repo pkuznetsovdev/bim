@@ -1,14 +1,13 @@
-import { useCallback, PropsWithChildren } from 'react';
-import { useSelector } from 'react-redux';
-import { useGetPostsQuery, UserApi } from '@models';
-import { RootState, useStoreDispatch } from '@store';
-import { List } from '@elements';
+import { PropsWithChildren } from 'react';
+import { useSignInMutation, useSignUpMutation } from 'src/api';
+import { Button } from '@elements';
 import type { Post, PostDetailsFound } from '@types';
+import { useTheme } from '@providers';
 
-function PostTemplate({
+const PostTemplate = ({
   description,
   petDetails,
-}: PropsWithChildren<Post & PostDetailsFound>) {
+}: PropsWithChildren<Post & PostDetailsFound>) => {
   return (
     <div className="card">
       <h4>{description}</h4>
@@ -16,32 +15,33 @@ function PostTemplate({
       <p>other post details</p>
     </div>
   );
-}
+};
 
-export function Posts() {
-  const dispatch = useStoreDispatch();
+const user = { email: 'pavel@email.com', password: 'secret' };
 
-  const { data: posts, isLoading } = useGetPostsQuery();
+export const Posts = () => {
+  const { toggleTheme } = useTheme();
+  const [signIn, signInResult] = useSignInMutation();
+  const [signUp, signUpResult] = useSignUpMutation();
 
-  // console.log('posts: ', posts);
+  const handleSignIn = () => {
+    signIn(user).then((result) => console.log('signIn: ', result));
+  };
 
-  const handleLogin = useCallback(() => {
-    dispatch(
-      UserApi.authLocal({
-        email: 'user1@test.com',
-        password: 'user1',
-      }),
-    );
-  }, [dispatch]);
+  const handleSignUp = () => {
+    signUp(user).then((result) => console.log('signUp: ', result));
+  };
 
-  const userData = useSelector<RootState, RootState['user']>(
-    (state) => state.user,
-  );
+  console.log('signInResult: ', signInResult);
+  console.log('signUpResult: ', signUpResult);
 
   return (
     <>
       <h1>Posts Page</h1>
-      {userData.isAuthorized ? (
+      <Button onClick={handleSignIn}>sign in</Button>
+      <Button onClick={handleSignUp}>sign up</Button>
+      <Button onClick={toggleTheme}>theme</Button>
+      {/*       {userData.isAuthorized ? (
         <button type="button" onClick={() => {}}>
           Logout
         </button>
@@ -55,7 +55,7 @@ export function Posts() {
         <p>Loading...</p>
       ) : (
         <List items={posts} itemKeyPropName="id" ItemTemplate={PostTemplate} />
-      )}
+      )} */}
     </>
   );
-}
+};

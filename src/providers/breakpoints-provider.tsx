@@ -4,6 +4,7 @@ import {
   useEffect,
   useMemo,
   useState,
+  useContext,
 } from 'react';
 import { BreakpointKey } from '@types';
 import { BREAKPOINT_KEYS, BREAKPOINTS } from '@constants';
@@ -44,11 +45,9 @@ const getBreakPoints = (screenWidth: number) => {
   };
 };
 
-export const BreakpointsContext = createContext(
-  getBreakPoints(window.innerWidth),
-);
+const BreakpointsContext = createContext(getBreakPoints(window.innerWidth));
 
-export function BreakpointsProvider({ children }: PropsWithChildren) {
+export const BreakpointsProvider = ({ children }: PropsWithChildren) => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -78,4 +77,8 @@ export function BreakpointsProvider({ children }: PropsWithChildren) {
       {children}
     </BreakpointsContext.Provider>
   );
+};
+
+export function useIsBreakpoint() {
+  return useContext(BreakpointsContext);
 }

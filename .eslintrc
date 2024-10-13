@@ -37,15 +37,9 @@
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
     "import/no-named-as-default": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": true,
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "react/react-in-jsx-scope": "off"
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [1],
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
   }
 }
