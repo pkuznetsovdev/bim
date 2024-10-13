@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { Block, Button, Text } from '@elements';
 
-export function PostDetails() {
+export const PostDetails = () => {
   const { postId } = useParams();
 
   return (
@@ -12,4 +12,4 @@ export function PostDetails() {
       <Button>Click me</Button>
     </div>
   );
-}
+};

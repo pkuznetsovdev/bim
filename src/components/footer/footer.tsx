@@ -5,6 +5,6 @@ const mainClass = 'footer';
 
 interface FooterProps extends ComponentPropsWithoutRef<'footer'> {}
 
-export function Footer({ className }: FooterProps) {
+export const Footer = ({ className }: FooterProps) => {
   return <footer className={classNames(className, mainClass)}>Footer</footer>;
-}
+};

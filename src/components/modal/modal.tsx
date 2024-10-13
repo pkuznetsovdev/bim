@@ -22,14 +22,14 @@ type ModalProps = React.PropsWithChildren<{
 
 const MODAL_CONTAINER_SELECTOR = '#modal-root';
 
-export function Modal({
+export const Modal = ({
   children,
   transitionDuration = 300,
   isOpen,
   id,
   className,
   mods,
-}: ModalProps) {
+}: ModalProps) => {
   const isOpenModal = useIsOpenModal(id, isOpen);
   const navigate = useNavigate();
 
@@ -96,4 +96,4 @@ export function Modal({
       </div>
     </Transition>
   );
-}
+};

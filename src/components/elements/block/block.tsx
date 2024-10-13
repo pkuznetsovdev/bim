@@ -13,14 +13,14 @@ interface BlockTemplateProps<TagName extends BlockTag = typeof DEFAULT_TAG>
 
 const mainClass = 'block';
 
-export function Block<TagName extends BlockTag = typeof DEFAULT_TAG>({
+export const Block = <TagName extends BlockTag = typeof DEFAULT_TAG>({
   className,
   children,
   // @ts-expect-error TODO: TS ERROR
   as: Tag = DEFAULT_TAG,
   mods,
   ...props
-}: JSX.IntrinsicElements[TagName] & BlockTemplateProps<TagName>) {
+}: JSX.IntrinsicElements[TagName] & BlockTemplateProps<TagName>) => {
   return (
     // @ts-expect-error TODO: TS ERROR
     <Tag
@@ -34,4 +34,4 @@ export function Block<TagName extends BlockTag = typeof DEFAULT_TAG>({
       {children}
     </Tag>
   );
-}
+};

@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 
 @mixin apply-theme($theme) {
   --primary-font-color: #{map.get($theme, primary-font-color)};

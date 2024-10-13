@@ -21,7 +21,7 @@ const ThemeContext = createContext<ThemeContextType>({
 
 const LOCAL_STORAGE_KEY = 'app-theme';
 
-export function ThemeProvider({ children }: PropsWithChildren) {
+export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
-}
+};
 
 export function useTheme() {
   return useContext(ThemeContext);

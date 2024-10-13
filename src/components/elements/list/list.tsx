@@ -3,22 +3,23 @@ import type { ComponentPropsWithoutRef, ComponentType } from 'react';
 import { getClassNameByMods } from '@utils';
 
 const mainClass = 'list';
-const itemClass = 'item';
+const listItemClass = 'ListItem';
 
-interface ListProps<Item> extends ComponentPropsWithoutRef<'ul'> {
-  items: Array<Item>;
-  ItemTemplate: ComponentType<Item>;
-  itemKeyPropName?: keyof Item;
+interface ListProps<ListItem extends { id?: string | number }>
+  extends ComponentPropsWithoutRef<'ul'> {
+  items: Array<ListItem>;
+  ItemTemplate: ComponentType<ListItem>;
+  itemKeyPropName?: keyof ListItem;
   mods?: ElementMods;
 }
 
-export function List<Item>({
+export const List = <ListItem extends { id?: string | number }>({
   className,
   items,
   ItemTemplate,
-  itemKeyPropName,
+  itemKeyPropName = 'id',
   mods,
-}: ListProps<Item>) {
+}: ListProps<ListItem>) => {
   return (
     <ul
       className={classNames(
@@ -29,17 +30,12 @@ export function List<Item>({
     >
       {items.map((item, idx) => (
         <li
-          key={
-            itemKeyPropName && item[itemKeyPropName]
-              ? `${item[itemKeyPropName]}`
-              : idx
-          }
-          className={classNames(itemClass)}
+          key={String(item[itemKeyPropName] ?? idx)}
+          className={classNames(listItemClass)}
         >
-          {/* @ts-expect-error TODO: TS ERROR */}
           <ItemTemplate {...item} />
         </li>
       ))}
     </ul>
   );
-}
+};

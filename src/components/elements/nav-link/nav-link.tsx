@@ -11,7 +11,7 @@ interface NavLinkTemplateProps extends NavLinkProps {
 
 const mainClass = 'nav-link';
 
-function NavLinkTemplate({
+const NavLinkTemplate = ({
   children,
   to,
   text,
@@ -19,7 +19,7 @@ function NavLinkTemplate({
   activeClassName = 'active',
   mods,
   ...props
-}: NavLinkTemplateProps) {
+}: NavLinkTemplateProps) => {
   return (
     <NavLink
       {...props}
@@ -36,7 +36,7 @@ function NavLinkTemplate({
       {text || children}
     </NavLink>
   );
-}
+};
 
 export { NavLinkTemplate as NavLink };
 export type { NavLinkTemplateProps as NavLinkProps };

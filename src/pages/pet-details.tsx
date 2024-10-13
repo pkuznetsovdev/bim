@@ -1,4 +1,4 @@
-export function PetDetails() {
+export const PetDetails = () => {
   return (
     <div>
       <h1>Pet details Page</h1>
@@ -6,4 +6,4 @@ export function PetDetails() {
       <span>Pet name</span>
     </div>
   );
-}
+};

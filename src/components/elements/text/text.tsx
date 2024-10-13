@@ -13,14 +13,14 @@ interface TextTemplateProps<TagName extends TextTag = typeof DEFAULT_TAG>
 
 const mainClass = 'text';
 
-export function Text<TagName extends TextTag = typeof DEFAULT_TAG>({
+export const Text = <TagName extends TextTag = typeof DEFAULT_TAG>({
   className,
   children,
   // @ts-expect-error TODO: TS ERROR
   as: Tag = DEFAULT_TAG,
   mods,
   ...props
-}: JSX.IntrinsicElements[TagName] & TextTemplateProps<TagName>) {
+}: JSX.IntrinsicElements[TagName] & TextTemplateProps<TagName>) => {
   return (
     // @ts-expect-error TODO: TS ERROR
     <Tag
@@ -34,4 +34,4 @@ export function Text<TagName extends TextTag = typeof DEFAULT_TAG>({
       {children}
     </Tag>
   );
-}
+};

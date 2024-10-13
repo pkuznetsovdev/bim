@@ -19,7 +19,7 @@ type LinkTemplateProps = LinkProps & {
 
 const mainClass = 'link';
 
-function LinkTemplate({
+const LinkTemplate = ({
   children,
   isExternal,
   to,
@@ -27,7 +27,7 @@ function LinkTemplate({
   className,
   mods,
   ...props
-}: LinkTemplateProps) {
+}: LinkTemplateProps) => {
   const classes = classNames(
     className,
     mainClass,
@@ -48,6 +48,6 @@ function LinkTemplate({
       {text || children}
     </Link>
   );
-}
+};
 
 export { LinkTemplate as Link };

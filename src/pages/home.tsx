@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router';
 import { APP_PATHS } from 'src/constants';
 
-export function Home() {
+export const Home = () => {
   const { search } = useLocation();
 
   Navigate({
@@ -13,4 +13,4 @@ export function Home() {
   });
 
   return null;
-}
+};

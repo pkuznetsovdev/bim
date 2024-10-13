@@ -2,17 +2,17 @@
 @use 'general' as *;
 
 $light-theme: (
-        primary-font-color: $primary-font-color,
-        secondary-font-color: $secondary-font-color,
-        caption-font-color: $caption-font-color,
-        title-font-color: $title-font-color,
-        background-color: $background-color,
+  primary-font-color: $primary-font-color,
+  secondary-font-color: $secondary-font-color,
+  caption-font-color: $caption-font-color,
+  title-font-color: $title-font-color,
+  background-color: $background-color,
 );
 
 $dark-theme: (
-        primary-font-color: $primary-font-color-dark,
-        secondary-font-color: $secondary-font-color-dark,
-        caption-font-color: $caption-font-color-dark,
-        title-font-color: $title-font-color-dark,
-        background-color: $background-color-dark,
+  primary-font-color: $primary-font-color-dark,
+  secondary-font-color: $secondary-font-color-dark,
+  caption-font-color: $caption-font-color-dark,
+  title-font-color: $title-font-color-dark,
+  background-color: $background-color-dark,
 );

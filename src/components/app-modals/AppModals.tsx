@@ -1,20 +1,20 @@
 import { Link } from '@elements';
 import { Modal } from '../modal';
 
-function SignUp() {
+const SignUp = () => {
   return <div className="SignUp">SignUp</div>;
-}
+};
 
-function SignIn() {
+const SignIn = () => {
   return (
     <>
       <Link to="?sign-up=modal">To sign up</Link>
       <div className="SignIn">SignIn</div>
     </>
   );
-}
+};
 
-export function AppModals() {
+export const AppModals = () => {
   return (
     <>
       <Modal id="sign-up">
@@ -25,4 +25,4 @@ export function AppModals() {
       </Modal>
     </>
   );
-}
+};

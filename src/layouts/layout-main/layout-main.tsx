@@ -3,7 +3,7 @@ import { AppModals, Navbar, Header, Footer } from '@components';
 
 const mainClass = 'layout-main';
 
-export function LayoutMain() {
+export const LayoutMain = () => {
   return (
     <div className={mainClass}>
       <Header />
@@ -16,4 +16,4 @@ export function LayoutMain() {
       <Footer />
     </div>
   );
-}
+};
