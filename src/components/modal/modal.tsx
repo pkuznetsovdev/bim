@@ -78,7 +78,6 @@ export const Modal = ({
         {modalContainer &&
           createPortal(
             <div
-              // className={`${mainClass} ${mainClass}--${transitionState}`}
               className={classNames(
                 className,
                 mainClass,
