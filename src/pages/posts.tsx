@@ -1,8 +1,10 @@
 import { PropsWithChildren } from 'react';
 import { useSignInMutation, useSignUpMutation } from 'src/api';
 import { Button } from '@elements';
+import { LanguageSelector } from '@components';
 import type { Post, PostDetailsFound } from '@types';
 import { useTheme } from '@providers';
+import { useTranslation } from 'react-i18next';
 
 const PostTemplate = ({
   description,
@@ -21,6 +23,7 @@ const user = { email: 'pavel@email.com', password: 'secret' };
 
 export const Posts = () => {
   const { toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   const [signIn, signInResult] = useSignInMutation();
   const [signUp, signUpResult] = useSignUpMutation();
 
@@ -32,30 +35,13 @@ export const Posts = () => {
     signUp(user).then((result) => console.log('signUp: ', result));
   };
 
-  console.log('signInResult: ', signInResult);
-  console.log('signUpResult: ', signUpResult);
-
   return (
     <>
       <h1>Posts Page</h1>
       <Button onClick={handleSignIn}>sign in</Button>
       <Button onClick={handleSignUp}>sign up</Button>
       <Button onClick={toggleTheme}>theme</Button>
-      {/*       {userData.isAuthorized ? (
-        <button type="button" onClick={() => {}}>
-          Logout
-        </button>
-      ) : (
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-      )}
-
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <List items={posts} itemKeyPropName="id" ItemTemplate={PostTemplate} />
-      )} */}
+      <LanguageSelector />
     </>
   );
 };
