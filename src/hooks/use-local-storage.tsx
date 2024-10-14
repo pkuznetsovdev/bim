@@ -4,7 +4,7 @@ export const useLocalStorage = <
   T extends Record<string, unknown> | null = null,
 >(
   keyName: string,
-  defaultValue?: T
+  defaultValue?: Partial<T>,
 ) => {
   const [storedValue, setStoredValue] = useState<T | null>(() => {
     try {
@@ -18,6 +18,7 @@ export const useLocalStorage = <
 
       return defaultValue;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       return defaultValue;
     }
@@ -28,6 +29,7 @@ export const useLocalStorage = <
       window.localStorage.setItem(keyName, JSON.stringify(newValue));
       setStoredValue(newValue);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
     }
   };

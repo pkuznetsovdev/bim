@@ -32,13 +32,39 @@ export default defineConfig({
         find: '@hooks',
         replacement: path.resolve(__dirname, 'src/hooks'),
       },
+      {
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api'),
+      },
+      {
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api'),
+      },
+      {
+        find: '@store',
+        replacement: path.resolve(__dirname, 'src/store'),
+      },
+      {
+        find: '@utils',
+        replacement: path.resolve(__dirname, 'src/utils'),
+      },
+      {
+        find: '@providers',
+        replacement: path.resolve(__dirname, 'src/providers'),
+      },
+      {
+        find: '@styles',
+        replacement: path.resolve(__dirname, 'src/styles'),
+      },
+      {
+        find: '@router',
+        replacement: path.resolve(__dirname, 'src/router'),
+      },
     ],
   },
   css: {
     preprocessorOptions: {
-      scss: {
-        implementation: sass,
-      },
+      implementation: sass,
     },
   },
 });

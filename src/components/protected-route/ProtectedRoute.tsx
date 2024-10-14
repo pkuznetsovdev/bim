@@ -1,14 +1,14 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from 'src/hooks';
 import { APP_PATHS } from '@constants';
+import { useSelector } from 'react-redux';
 
-export const ProtectedRoute = ({ children }: React.PropsWithChildren) => {
-  const { user } = useAuth();
+export function ProtectedRoute({ children }: React.PropsWithChildren) {
+  // const userData = useSelector(selectUser);
 
-  if (!user) {
-    // user is not authenticated
-    return <Navigate to={APP_PATHS.protectedRouteRedirect} />;
-  }
+  // if (!userData.isAuthorized) {
+  //   return <Navigate to={APP_PATHS.protectedRouteRedirect} />;
+  // }
+
   return children;
-};
+}

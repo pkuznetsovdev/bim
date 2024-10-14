@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import { useNavigate } from 'react-router-dom';
 import './modal.scss';
@@ -6,6 +6,8 @@ import { createPortal } from 'react-dom';
 import { TRANSITION_STATES } from '@constants';
 import { ModalId, TransitionState } from '@types';
 import { useIsOpenModal } from '@hooks';
+import { getClassNameByMods } from '@utils';
+import classNames from 'classnames';
 
 const mainClass = 'modal';
 
@@ -15,6 +17,7 @@ type ModalProps = React.PropsWithChildren<{
   isOpen?: boolean;
   id: ModalId;
   children: React.ReactElement<{ transitionState: TransitionState }>;
+  mods?: ElementMods;
 }>;
 
 const MODAL_CONTAINER_SELECTOR = '#modal-root';
@@ -24,6 +27,8 @@ export const Modal = ({
   transitionDuration = 300,
   isOpen,
   id,
+  className,
+  mods,
 }: ModalProps) => {
   const isOpenModal = useIsOpenModal(id, isOpen);
   const navigate = useNavigate();
@@ -37,26 +42,30 @@ export const Modal = ({
       enter: 0,
       exit: transitionDuration,
     }),
-    [transitionDuration]
+    [transitionDuration],
   );
 
   const onCloseModal = useCallback(() => navigate(-1), [navigate]);
 
   const handleOnEntered = useCallback(
     () => setTransitionState(TRANSITION_STATES.entered),
-    []
+    [],
   );
   const handleOnExiting = useCallback(
     () => setTransitionState(TRANSITION_STATES.exiting),
-    []
+    [],
   );
 
-  const modalContainer = useMemo(() => {
-    return document.querySelector(MODAL_CONTAINER_SELECTOR);
-  }, []);
+  const modalContainer = useMemo(
+    () => document.querySelector(MODAL_CONTAINER_SELECTOR),
+    [],
+  );
+
+  const modalRef = useRef(null);
 
   return (
     <Transition
+      nodeRef={modalRef}
       timeout={timeout}
       in={isOpenModal}
       appear
@@ -68,14 +77,20 @@ export const Modal = ({
       <div>
         {modalContainer &&
           createPortal(
-            <div className={`${mainClass} ${mainClass}--${transitionState}`}>
+            <div
+              className={classNames(
+                className,
+                mainClass,
+                getClassNameByMods(mainClass, mods, transitionState),
+              )}
+            >
               {children}
               <br />
               <button type="button" onClick={onCloseModal}>
                 close
               </button>
             </div>,
-            modalContainer
+            modalContainer,
           )}
       </div>
     </Transition>

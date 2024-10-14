@@ -1,9 +1,14 @@
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 import { APP_PATHS } from 'src/constants';
 
 export const Home = () => {
+  const { search } = useLocation();
+
   Navigate({
-    to: APP_PATHS.posts,
+    to: {
+      pathname: APP_PATHS.posts,
+      search,
+    },
     replace: true,
   });
 

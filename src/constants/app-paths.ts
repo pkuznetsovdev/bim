@@ -5,6 +5,7 @@ export const APP_PATH_PARAMS = {
 
 export const APP_PATHS = {
   root: '/',
+  home: '/posts',
   user: '/user',
   posts: '/posts',
   postNew: '/post/new',

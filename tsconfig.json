@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "es2022"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -27,10 +27,18 @@
       "@components": ["src/components"],
       "@constants": ["src/constants"],
       "@types": ["src/types"],
+      "@styles": ["src/styles/index.scss"],
       "@hooks": ["src/hooks"],
-      "@hooks/*": ["src/hooks/*"]
-    }
+      "@hooks/*": ["src/hooks/*"],
+      "@api": ["src/api"],
+      "@api/*": ["src/api/*"],
+      "@store": ["src/store"],
+      "@utils": ["src/utils"],
+      "@providers": ["src/providers"],
+      "@router": ["src/router"]
+    },
+    "typeRoots": ["node_modules/@types"]
   },
-  "include": ["src", ".eslintrc.cjs"],
+  "include": ["src", ".eslintrc", ".prettierrc"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

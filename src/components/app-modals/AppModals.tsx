@@ -1,5 +1,5 @@
-import { Modal } from '@components';
 import { Link } from '@elements';
+import { Modal } from '../modal';
 
 const SignUp = () => {
   return <div className="SignUp">SignUp</div>;

@@ -1,12 +1,15 @@
 import { useParams } from 'react-router';
+import { Block, Button, Text } from '@elements';
 
 export const PostDetails = () => {
   const { postId } = useParams();
 
   return (
     <div>
-      <h1>Post details Page</h1>
-      <p>Post #{postId}</p>
+      <Text as="h1">Post details Page</Text>
+      <Text>Post #{postId}</Text>
+      <Block mods={['hello']}>Block</Block>
+      <Button>Click me</Button>
     </div>
   );
 };
