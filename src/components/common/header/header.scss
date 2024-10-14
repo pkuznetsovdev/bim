@@ -1,0 +1,11 @@
+$class: 'header';
+
+.#{$class} {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  &__logo {
+    width: 100px;
+  }
+}

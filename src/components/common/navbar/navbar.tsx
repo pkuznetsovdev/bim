@@ -12,7 +12,7 @@ interface NavbarProps extends CommonComponentProps {}
 
 const NAV_BAR_ROUTES: Array<NavLinkProps> = [
   {
-    to: APP_PATHS.home,
+    to: APP_PATHS.root,
     text: 'Home',
     end: true,
   },
