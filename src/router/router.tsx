@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Pages } from 'src/pages';
+
+import { ProtectedRoute } from '@components';
 import { APP_PATHS } from 'src/constants';
 import { LayoutMain } from 'src/layouts';
-import { ProtectedRoute } from '@components';
+import { Pages } from 'src/pages';
 
 export const router = createBrowserRouter([
   /** Public routes */

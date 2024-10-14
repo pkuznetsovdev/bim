@@ -1,6 +1,7 @@
-import { ModalId } from '@types';
-import { MODAL_QUERY_PARAM_VALUE } from '@constants';
 import { createSearchParams } from 'react-router-dom';
+
+import { MODAL_QUERY_PARAM_VALUE } from '@constants';
+import { ModalId } from '@types';
 
 export const getQuery = (queryParams?: Record<string, unknown>) => {
   if (!queryParams) {

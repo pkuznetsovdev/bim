@@ -1,8 +1,10 @@
+import classnames from 'classnames';
+
 import { APP_PATHS } from '@constants';
-import { NavLink, List } from '@elements';
+import { List, NavLink } from '@elements';
+
 import type { NavLinkProps } from '@elements';
 import type { CommonComponentProps } from '@types';
-import classNames from 'classnames';
 
 const mainClass = 'navbar';
 
@@ -32,18 +34,16 @@ const NAV_BAR_ROUTES: Array<NavLinkProps> = [
   },
 ];
 
-const NavbarItem = (navLink: (typeof NAV_BAR_ROUTES)[number]) => {
-  return <NavLink {...navLink} className={`${mainClass}__link`} />;
-};
+const NavbarItem = (navLink: (typeof NAV_BAR_ROUTES)[number]) => (
+  <NavLink {...navLink} className={`${mainClass}__link`} />
+);
 
-export const Navbar = ({ className }: NavbarProps) => {
-  return (
-    <nav className={classNames(className, mainClass)}>
-      <List
-        className={`${mainClass}__links`}
-        items={NAV_BAR_ROUTES}
-        ItemTemplate={NavbarItem}
-      />
-    </nav>
-  );
-};
+export const Navbar = ({ className }: NavbarProps) => (
+  <nav className={classnames(className, mainClass)}>
+    <List
+      className={`${mainClass}__links`}
+      items={NAV_BAR_ROUTES}
+      ItemTemplate={NavbarItem}
+    />
+  </nav>
+);

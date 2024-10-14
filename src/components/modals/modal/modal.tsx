@@ -1,13 +1,16 @@
+/** TODO eslint: fix order 1. react* 2. classnames */
+import classnames from 'classnames';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { Transition } from 'react-transition-group';
-import { useNavigate } from 'react-router-dom';
-import './modal.scss';
 import { createPortal } from 'react-dom';
-import { TRANSITION_STATES } from '@constants';
-import { ModalId, TransitionState } from '@types';
+import { useSearchParams } from 'react-router-dom';
+import { Transition } from 'react-transition-group';
+
+import { MODAL_CONTAINER_SELECTOR, TRANSITION_STATES } from '@constants';
 import { useIsOpenModal } from '@hooks';
+import { ModalId, TransitionState } from '@types';
 import { getClassNameByMods } from '@utils';
-import classNames from 'classnames';
+
+import './modal.scss';
 
 const mainClass = 'modal';
 
@@ -20,8 +23,6 @@ type ModalProps = React.PropsWithChildren<{
   mods?: ElementMods;
 }>;
 
-const MODAL_CONTAINER_SELECTOR = '#modal-root';
-
 export const Modal = ({
   children,
   transitionDuration = 300,
@@ -30,8 +31,9 @@ export const Modal = ({
   className,
   mods,
 }: ModalProps) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const isOpenModal = useIsOpenModal(id, isOpen);
-  const navigate = useNavigate();
 
   const [transitionState, setTransitionState] =
     useState<null | TransitionState>(null);
@@ -45,7 +47,10 @@ export const Modal = ({
     [transitionDuration],
   );
 
-  const onCloseModal = useCallback(() => navigate(-1), [navigate]);
+  const onCloseModal = useCallback(() => {
+    searchParams.delete(id);
+    setSearchParams(searchParams);
+  }, [id, searchParams, setSearchParams]);
 
   const handleOnEntered = useCallback(
     () => setTransitionState(TRANSITION_STATES.entered),
@@ -78,7 +83,7 @@ export const Modal = ({
         {modalContainer &&
           createPortal(
             <div
-              className={classNames(
+              className={classnames(
                 className,
                 mainClass,
                 getClassNameByMods(mainClass, mods, transitionState),

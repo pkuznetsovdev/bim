@@ -1,7 +1,8 @@
-import { ModalId } from '@types';
-import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import { MODAL_QUERY_PARAM_VALUE } from '@constants';
+import { ModalId } from '@types';
 
 export function useIsOpenModal(id?: ModalId, isOpen: boolean | null = null) {
   const [searchParams] = useSearchParams();

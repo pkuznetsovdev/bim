@@ -1,5 +1,7 @@
+import classnames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { Button, Block } from '@elements';
+
+import { Block, Button } from '@elements';
 import { CommonComponentProps } from '@types';
 
 const mainClass = 'language-selector';
@@ -15,7 +17,7 @@ export const LanguageSelector = ({ className }: LanguageSelectorProps) => {
   };
 
   return (
-    <Block className={mainClass}>
+    <Block className={classnames(className, mainClass)}>
       <Button onClick={changeLanguage}>{t('buttons.toggleLang')}</Button>
     </Block>
   );

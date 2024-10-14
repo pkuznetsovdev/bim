@@ -1,5 +1,7 @@
-import classNames from 'classnames';
 import type { ComponentPropsWithoutRef, ComponentType } from 'react';
+
+import classnames from 'classnames';
+
 import { getClassNameByMods } from '@utils';
 
 const mainClass = 'list';
@@ -19,23 +21,21 @@ export const List = <ListItem extends { id?: string | number }>({
   ItemTemplate,
   itemKeyPropName = 'id',
   mods,
-}: ListProps<ListItem>) => {
-  return (
-    <ul
-      className={classNames(
-        className,
-        mainClass,
-        getClassNameByMods(mainClass, mods),
-      )}
-    >
-      {items.map((item, idx) => (
-        <li
-          key={String(item[itemKeyPropName] ?? idx)}
-          className={classNames(listItemClass)}
-        >
-          <ItemTemplate {...item} />
-        </li>
-      ))}
-    </ul>
-  );
-};
+}: ListProps<ListItem>) => (
+  <ul
+    className={classnames(
+      className,
+      mainClass,
+      getClassNameByMods(mainClass, mods),
+    )}
+  >
+    {items.map((item, idx) => (
+      <li
+        key={String(item[itemKeyPropName] ?? idx)}
+        className={classnames(listItemClass)}
+      >
+        <ItemTemplate {...item} />
+      </li>
+    ))}
+  </ul>
+);

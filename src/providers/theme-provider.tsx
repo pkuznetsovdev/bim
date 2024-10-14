@@ -1,10 +1,10 @@
 import React, {
   createContext,
+  PropsWithChildren,
   useContext,
   useEffect,
-  useState,
-  PropsWithChildren,
   useMemo,
+  useState,
 } from 'react';
 
 type Theme = 'light' | 'dark';

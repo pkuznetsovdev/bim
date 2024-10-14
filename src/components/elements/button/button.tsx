@@ -1,5 +1,6 @@
-import { forwardRef, ComponentPropsWithoutRef } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
+
 import { getClassNameByMods } from '@utils';
 
 const mainClass = 'button';
@@ -30,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => (
     <button
       {...props}
-      className={classNames(
+      className={classnames(
         className,
         mainClass,
         getClassNameByMods(mainClass, mods),

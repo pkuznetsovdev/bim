@@ -1,5 +1,6 @@
+import { Pet, PetDetails } from './pets';
 import { User } from './user';
-import { PetDetails, Pet } from './pets';
+
 import type { IsoString } from './date';
 import type { GenericSlice } from './store';
 
