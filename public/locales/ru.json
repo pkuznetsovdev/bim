@@ -1,0 +1,8 @@
+{
+  "common": {
+    "test": "Test in ru"
+  },
+  "buttons": {
+    "toggleLang": "Change lang in RU"
+  }
+}
