@@ -12,21 +12,32 @@ export type PetHost = number;
 export type PetPhotoUrl = string;
 export type PetStatus = (typeof PET_STATUS)[keyof typeof PET_STATUS];
 
-export interface PetDetails {
+interface PetDetailsLost {
   type: PetType;
   breed: PetBreed;
   name: PetName;
   dateOfBirth: IsoString;
   photos: Array<PetPhotoUrl>;
-  status: PetStatus;
+  status: 'found';
   colors?: Array<PetColor>;
   description?: PetDescription;
 }
 
-export interface Pet extends PetDetails {
+interface PetDetailsFound {
+  type: PetType;
+  breed?: Array<PetBreed>;
+  photos: Array<PetPhotoUrl>;
+  status: 'lost';
+  colors?: Array<PetColor>;
+  description?: PetDescription;
+}
+
+export type PetDetails = PetDetailsLost | PetDetailsFound;
+
+export type Pet = PetDetails & {
   id: number;
   createdAt: IsoString;
   host: PetHost;
-}
+};
 
 export interface PetsState extends GenericSlice<Array<Pet>> {}

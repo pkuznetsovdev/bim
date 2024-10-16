@@ -13,7 +13,7 @@ export const Header = ({ className }: HeaderProps) => (
   <header className={classnames(className, mainClass)}>
     <img
       className={classnames(className, `${mainClass}__logo`)}
-      src={getAssetsPath('/images/logo/damoi.webp')}
+      src={getAssetsPath('/images/logo/damoi.png')}
       alt=""
     />
   </header>

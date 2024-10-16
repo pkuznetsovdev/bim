@@ -9,8 +9,8 @@ const mainClass = 'layout-main';
 export const LayoutMain = () => (
   <div className={mainClass}>
     <Header />
-    <Navbar />
-    <main>
+    {/* <Navbar /> */}
+    <main className={`${mainClass}__main`}>
       <Outlet />
     </main>
     <AppModals />
