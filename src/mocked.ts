@@ -5,12 +5,10 @@ export const MOCKED: {
     pet: Partial<PetDetails>;
   }>;
 } = {
-  posts: [
-    {
-      pet: {
-        type: 'dog',
-        breed: 'labrador',
-      },
+  posts: Array(20).fill({
+    pet: {
+      type: 'dog',
+      breed: 'labrador',
     },
-  ],
+  }),
 };

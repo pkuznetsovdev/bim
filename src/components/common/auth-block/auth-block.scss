@@ -1,0 +1,8 @@
+@use '@styles/utils' as *;
+
+$class: 'auth-block';
+
+.#{$class} {
+  display: flex;
+  gap: 20px;
+}

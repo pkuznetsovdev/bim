@@ -1,3 +1,5 @@
+@use '@styles/utils' as *;
+
 $class: 'layout-main';
 
 .#{$class} {
@@ -8,8 +10,12 @@ $class: 'layout-main';
   height: 100%;
   margin: 0 auto;
 
+  @include responsive(gap, (16px, 20px));
+
   &__main {
     flex: 1;
     overflow-x: auto;
+
+    border: 1px solid $gray-100;
   }
 }

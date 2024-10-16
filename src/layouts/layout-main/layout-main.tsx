@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { AppModals, Footer, Header, Navbar } from '@components';
+import { AppModals, Footer, Header } from '@components';
 
 import './layout-main.scss';
 

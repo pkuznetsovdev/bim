@@ -1,0 +1,102 @@
+@use '../variables/breakpoints' as *;
+
+$breakpoints: (
+  default,
+  $screen-sm,
+  $screen-md,
+  $screen-lg,
+  $screen-xl,
+  $screen-xxl
+);
+
+$breakpointsByKeys: (
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl,
+  xxl: $screen-xxl,
+);
+
+// @example
+// .test {
+//   @include responsive('font-size', (10px, 20px));
+//   @include responsive('font-size', (default: 10px, xl: 30px));
+// }
+@mixin responsive($propName, $values, $customConfig: ()) {
+  $defaultConfig: (
+    skipFirst: false,
+    skipLast: false,
+    hideEmpty: false,
+  );
+
+  $config: $defaultConfig;
+
+  @if type-of($customConfig) == 'map' {
+    $config: map-merge($defaultConfig, $customConfig);
+  }
+
+  $isValuesByKeys: false;
+
+  @if type-of($values) == 'map' {
+    $isValuesByKeys: true;
+  }
+
+  $className: '&';
+  $isSkipFirst: map-get($config, 'skipFirst');
+  $isSkipLast: map-get($config, 'skipLast');
+
+  @if $isSkipFirst or $isSkipLast {
+    $className: $className + ':not(';
+
+    @if $isSkipFirst {
+      $className: $className + '&:first-child';
+    }
+
+    @if $isSkipLast {
+      @if ($isSkipFirst) {
+        $className: $className + ', ';
+      }
+
+      $className: $className + '&:last-child';
+    }
+
+    $className: $className + ')';
+  }
+
+  #{$className} {
+    @if ($isValuesByKeys) {
+      #{$propName}: map-get($values, default);
+
+      @each $bpKey, $valueByKey in $values {
+        $bpByKey: map-get($breakpointsByKeys, $bpKey);
+
+        @if $bpByKey and $valueByKey {
+          @media (min-width: $bpByKey) {
+            #{$propName}: $valueByKey;
+          }
+        }
+      }
+    } @else {
+      #{$propName}: nth($values, 1);
+
+      @for $idx from 2 through length($values) {
+        @if ($idx <=length($breakpoints)) {
+          $bp: nth($breakpoints, $idx);
+          $value: nth($values, $idx);
+
+          @if ($value) {
+            @media (min-width: $bp) {
+              #{$propName}: $value;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @if (map-get($config, 'hideEmpty')) {
+    &:empty {
+      display: none;
+    }
+  }
+}

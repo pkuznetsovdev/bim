@@ -6,6 +6,8 @@ import { MOCKED } from 'src/mocked';
 
 import { PostListItem } from '../post-list-item';
 
+import './post-list.scss';
+
 const mainClass = 'post-list';
 
 interface PostListProps extends CommonComponentProps {}

@@ -1,5 +1,7 @@
 import classnames from 'classnames';
 
+import { AuthBlock } from '@components/common/auth-block';
+import { Image } from '@elements';
 import { CommonComponentProps } from '@types';
 import { getAssetsPath } from '@utils';
 
@@ -11,10 +13,11 @@ interface HeaderProps extends CommonComponentProps {}
 
 export const Header = ({ className }: HeaderProps) => (
   <header className={classnames(className, mainClass)}>
-    <img
-      className={classnames(className, `${mainClass}__logo`)}
+    <Image
+      className={`${mainClass}__logo`}
       src={getAssetsPath('/images/logo/damoi.png')}
-      alt=""
+      alt="pawprint in the house"
     />
+    <AuthBlock />
   </header>
 );
