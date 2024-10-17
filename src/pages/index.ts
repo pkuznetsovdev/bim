@@ -1,10 +1,10 @@
 import { Home } from './home';
+import { NewPet } from './new-pet';
+import { NewPost } from './new-post';
+import { PetDetails } from './pet-details';
+import { PostDetails } from './post-details';
 import { Posts } from './posts';
 import { User } from './user';
-import { PostDetails } from './post-details';
-import { PetDetails } from './pet-details';
-import { NewPost } from './new-post';
-import { NewPet } from './new-pet';
 
 export const Pages = {
   Home,

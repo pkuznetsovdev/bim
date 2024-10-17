@@ -1,0 +1,21 @@
+@use '@styles/utils' as *;
+
+$class: 'layout-main';
+
+.#{$class} {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+
+  @include responsive(gap, (16px, 20px));
+
+  &__main {
+    flex: 1;
+    overflow-x: auto;
+
+    border: 1px solid $gray-100;
+  }
+}

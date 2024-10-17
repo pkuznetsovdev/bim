@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { petsApi, usersApi, postsApi, authApi } from 'src/api';
+
+import { authApi, petsApi, postsApi, usersApi } from 'src/api';
+
 import { userSliceReducer } from './user';
 
 export const store = configureStore({

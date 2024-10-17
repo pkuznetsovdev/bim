@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { API_PATHS } from '@constants';
-import { getApiUrl } from '@utils';
 import { AuthLocalProps } from '@types';
+import { getApiUrl } from '@utils';
+
 import { usersApi } from '../users';
 
 // const TAG_TYPE = 'auth' as const;

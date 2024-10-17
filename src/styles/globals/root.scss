@@ -22,12 +22,17 @@
 body {
   margin: 0;
   min-width: 100%;
-  min-height: 100dvh;
+  min-height: 100vh;
+  height: 100%;
   transition:
     height 0.2s,
     background-color 0.2s;
   background: var(--background-color);
   color: var(--primary-font-color);
+}
+
+#root {
+  height: 100vh;
 }
 
 h3 {

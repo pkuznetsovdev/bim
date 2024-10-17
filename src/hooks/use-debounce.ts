@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const useDebounce = <Callback extends Function>(

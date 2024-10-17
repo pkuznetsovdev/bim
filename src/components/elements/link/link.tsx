@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
-import classNames from 'classnames';
+
+import classnames from 'classnames';
+import { Link } from 'react-router-dom';
+
 import { getClassNameByMods, isExternalUrl } from '@utils';
 
 interface LinkInternalTemplateProps {
@@ -28,11 +30,12 @@ const LinkTemplate = ({
   mods,
   ...props
 }: LinkTemplateProps) => {
-  const classes = classNames(
+  const classes = classnames(
     className,
     mainClass,
     getClassNameByMods(mainClass, mods),
   );
+
   const isExternalLink = isExternal || isExternalUrl(to);
 
   if (isExternalLink) {

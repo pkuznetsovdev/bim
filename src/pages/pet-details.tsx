@@ -1,9 +1,7 @@
-export const PetDetails = () => {
-  return (
-    <div>
-      <h1>Pet details Page</h1>
-      <p>Pet description</p>
-      <span>Pet name</span>
-    </div>
-  );
-};
+export const PetDetails = () => (
+  <div>
+    <h1>Pet details Page</h1>
+    <p>Pet description</p>
+    <span>Pet name</span>
+  </div>
+);

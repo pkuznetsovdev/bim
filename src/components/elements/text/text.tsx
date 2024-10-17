@@ -1,5 +1,6 @@
-import { PropsWithChildren, JSX } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
+import { JSX, PropsWithChildren } from 'react';
+
 import { getClassNameByMods } from '@utils';
 
 type TextTag = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -20,18 +21,16 @@ export const Text = <TagName extends TextTag = typeof DEFAULT_TAG>({
   as: Tag = DEFAULT_TAG,
   mods,
   ...props
-}: JSX.IntrinsicElements[TagName] & TextTemplateProps<TagName>) => {
-  return (
-    // @ts-expect-error TODO: TS ERROR
-    <Tag
-      {...props}
-      className={classNames(
-        className,
-        mainClass,
-        getClassNameByMods(mainClass, mods),
-      )}
-    >
-      {children}
-    </Tag>
-  );
-};
+}: JSX.IntrinsicElements[TagName] & TextTemplateProps<TagName>) => (
+  // @ts-expect-error TODO: TS ERROR
+  <Tag
+    {...props}
+    className={classnames(
+      className,
+      mainClass,
+      getClassNameByMods(mainClass, mods),
+    )}
+  >
+    {children}
+  </Tag>
+);

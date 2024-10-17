@@ -1,0 +1,13 @@
+@use '@styles/utils' as *;
+
+$class: 'sign-in-modal';
+
+.#{$class} {
+  background: $white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  border-radius: 8px;
+}

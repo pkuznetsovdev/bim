@@ -9,3 +9,5 @@ export const TRANSITION_STATES = {
 };
 
 export const MODAL_QUERY_PARAM_VALUE = 'modal';
+
+export const MODAL_CONTAINER_SELECTOR = '#modal-root';

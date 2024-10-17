@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { API_ENDPOINTS, API_PATHS } from '@constants';
-import { getApiUrl } from '@utils';
 import { NewUserByEmail, User } from '@types';
+import { getApiUrl } from '@utils';
 
 // const TAG_TYPE = 'user' as const;
 
@@ -24,10 +25,10 @@ export const usersApi = createApi({
       query: () => ({
         url: API_ENDPOINTS.users.current,
       }),
-      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_args, { queryFulfilled }) {
         try {
           await queryFulfilled;
-          console.log(queryFulfilled);
+          console.warn(queryFulfilled);
           // await dispatch(usersApi.endpoints.getCurrent.initiate(null));
         } catch (error) {
           console.error('signIn error: ', error);

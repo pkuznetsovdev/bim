@@ -1,4 +1,5 @@
 import { useParams } from 'react-router';
+
 import { Block, Button, Text } from '@elements';
 
 export const PostDetails = () => {

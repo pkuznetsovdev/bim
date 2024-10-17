@@ -1,15 +1,16 @@
 import {
   createContext,
   PropsWithChildren,
+  useContext,
   useEffect,
   useMemo,
   useState,
-  useContext,
 } from 'react';
-import { BreakpointKey } from '@types';
+
 import { BREAKPOINT_KEYS, BREAKPOINTS } from '@constants';
-import { capitalize } from '@utils';
 import { useThrottle } from '@hooks/use-throttle';
+import { BreakpointKey } from '@types';
+import { capitalize } from '@utils';
 
 type BreakpointsContextType = Record<
   `is${Capitalize<BreakpointKey>}` | `isAbove${Capitalize<BreakpointKey>}`,

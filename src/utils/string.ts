@@ -5,7 +5,7 @@ export function capitalize(str: string) {
 }
 
 export function isExternalUrl(urlToCheck?: LinkProps['to']) {
-  if (typeof urlToCheck !== 'string') {
+  if (typeof urlToCheck !== 'string' || !urlToCheck.includes('http')) {
     return false;
   }
 

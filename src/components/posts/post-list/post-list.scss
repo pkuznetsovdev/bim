@@ -1,0 +1,8 @@
+@use '@styles/utils' as *;
+
+$class: 'post-list';
+
+.#{$class} {
+  overflow: hidden;
+  overflow-y: auto;
+}

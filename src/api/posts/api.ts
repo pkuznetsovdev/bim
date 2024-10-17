@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { BASE_API_PATH } from '@constants';
 import { Post, PostDetails } from '@types';
+
 import { getInvalidateTags, getProvidesTags } from '../utils';
 
 const TAG_TYPE = 'posts' as const;

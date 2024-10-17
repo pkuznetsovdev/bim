@@ -1,6 +1,7 @@
-import { ModalId } from '@types';
-import { MODAL_QUERY_PARAM_VALUE } from '@constants';
 import { createSearchParams } from 'react-router-dom';
+
+import { MODAL_QUERY_PARAM_VALUE } from '@constants';
+import { ModalId } from '@types';
 
 export const getQuery = (queryParams?: Record<string, unknown>) => {
   if (!queryParams) {
@@ -12,11 +13,11 @@ export const getQuery = (queryParams?: Record<string, unknown>) => {
 };
 
 export const getLink = (path: string, queryParams?: Record<string, unknown>) =>
-  `${path === '' ? window.location.pathname : path}${getQuery(queryParams)}`;
+  `${path}${getQuery(queryParams)}`;
 
 export const getModalLink = (
   modalId: ModalId,
-  path = '',
+  path = '/',
   queryParams?: Record<string, unknown>,
 ) =>
   getLink(path, {
