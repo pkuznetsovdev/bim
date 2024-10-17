@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 import { MODAL_CONTAINER_SELECTOR, TRANSITION_STATES } from '@constants';
+import { Block } from '@elements';
 import { useIsOpenModal } from '@hooks';
 import { ModalId, TransitionState } from '@types';
 import { getClassNameByMods } from '@utils';
@@ -89,11 +90,17 @@ export const Modal = ({
                 getClassNameByMods(mainClass, mods, transitionState),
               )}
             >
-              {children}
-              <br />
-              <button type="button" onClick={onCloseModal}>
-                close
-              </button>
+              <Block
+                className={classnames(`${mainClass}__bg`)}
+                onClick={onCloseModal}
+              />
+              <Block className={classnames(`${mainClass}__content`)}>
+                {children}
+                <br />
+                <button type="button" onClick={onCloseModal}>
+                  close
+                </button>
+              </Block>
             </div>,
             modalContainer,
           )}

@@ -13,11 +13,11 @@ export const getQuery = (queryParams?: Record<string, unknown>) => {
 };
 
 export const getLink = (path: string, queryParams?: Record<string, unknown>) =>
-  `${path === '' ? window.location.pathname : path}${getQuery(queryParams)}`;
+  `${path}${getQuery(queryParams)}`;
 
 export const getModalLink = (
   modalId: ModalId,
-  path = '',
+  path = '/',
   queryParams?: Record<string, unknown>,
 ) =>
   getLink(path, {

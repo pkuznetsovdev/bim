@@ -35,6 +35,7 @@ const LinkTemplate = ({
     mainClass,
     getClassNameByMods(mainClass, mods),
   );
+
   const isExternalLink = isExternal || isExternalUrl(to);
 
   if (isExternalLink) {
